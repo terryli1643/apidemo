@@ -1,0 +1,73 @@
+{
+    "DataSource": {
+        "DNS": "root:111111@tcp(127.0.0.1:3306)/shadow?charset=utf8&parseTime=True&loc=Local",
+        "Driver": "mysql",
+        "IdlePoolSize": 30,
+        "MaxPoolSize": 200,
+        "MaxLifeTime": 60,
+        "SqlDebug": 1,
+        "AutoCreate": false
+    },
+    "RedisServer": {
+        "Password": "",
+        "Host": "127.0.0.1",
+        "Port": ":6379",
+        "DB": "1",
+        "MaxIdle": 100,
+        "MaxActive": 200,
+        "IdleTimeout": 60
+    },
+    "BccServer": {
+        "BccHost": "http://localhost:8080",
+        "MccHost": "http://localhost:8180",
+        "BccPort": ":8080",
+        "MccPort": ":8180",
+        "BccContextPath": "/bcc",
+        "MccContextPath": "/mcc"
+    },
+    "MapiServer": {
+        "ApiHost": "http://localhost:8000",
+        "ApiPort": ":8000",
+        "ApiContextPath": "/mapi"
+    },
+    "EapiServer": {
+        "ApiHost": "http://localhost:7000",
+        "ApiPort": ":7000",
+        "ApiContextPath": "/eapi"
+    },
+    "PapiServer": {
+        "ApiHost": "http://localhost:7171",
+        "ApiPort": ":7171",
+        "ApiContextPath": "/papi"
+    },
+    "QapiServer": {
+        "ApiHost": "http://localhost:7100",
+        "ApiPort": ":7100",
+        "ApiContextPath": "/qapi"
+    },
+    "QMapiServer": {
+        "ApiHost": "http://localhost:7172",
+        "ApiPort": ":7172",
+        "ApiContextPath": "/qmapi"
+    },
+    "RapiServer": {
+        "ApiHost": "http://localhost:7200",
+        "ApiPort": ":7200",
+        "ApiContextPath": "/rapi"
+    },
+    "AuthServer": {
+        "Addr": "52.193.196.190:58008",
+        "AppID": "RRPTEST"
+    },
+    "JPushServer": {
+        "AppKey": "ab243c245bbaefca5e338665",
+        "Secret": "9c14c418eb64130dc4b9a7c6"
+    },
+    "ExportUploadConfig": {
+        "TemPath": "/tmp/",
+        "CdnProject": "renrenpay",
+        "CdnENV": "/test",
+        "CdnPath": "/export/",
+        "RrpPath": "rrp/"
+    }
+}

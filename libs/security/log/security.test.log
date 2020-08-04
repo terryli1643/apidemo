@@ -1,0 +1,30 @@
+time="2020-08-04 10:15:03.110" level=info msg="logger init (logger.InitLog:logger.go:55)"
+time="2020-08-04 10:15:03.115" level=info msg="ServerConfigure init  (server.init.0:init.go:16)"
+time="2020-08-04 10:15:03.115" level=info msg="GormDataSourceManager init  (datasourcemanager.init.0:init.go:17)"
+time="2020-08-04 10:15:03.115" level=info msg="AnonymousAuthenticationProvider init  (security.init.0:init.go:27)"
+time="2020-08-04 10:15:03.115" level=info msg="CasbinAuthenticationProvider init  (security.init.0:init.go:30)"
+time="2020-08-04 10:15:03.115" level=info msg="DaoAuthenticationProvider init  (security.init.0:init.go:33)"
+time="2020-08-04 10:15:03.115" level=info msg="PasswordEncoder init  (security.init.0:init.go:36)"
+time="2020-08-04 10:15:03.115" level=info msg="ProviderManager init  (security.init.0:init.go:39)"
+time="2020-08-04 10:15:03.116" level=info msg="CasbinAuthenticationRequestResolver init (security.init.0:init.go:42)"
+time="2020-08-04 10:15:03.116" level=info msg="UsernamePasswordResolver init (security.init.0:init.go:45)"
+time="2020-08-04 10:15:03.116" level=error msg="server configure init failed, file doesn't exist" rbac_model.conf="/Users/terry/go/src/github.com/terryli1643/apidemo/libs/configure/rbac/rbac_model.conf" ~LineNum=" (security.casbinModelFilePath:casbin_enforcer.go:40)"
+time="2020-08-04 10:15:03.116" level=panic msg="open /Users/terry/go/src/github.com/terryli1643/apidemo/libs/configure/rbac/rbac_model.conf: no such file or directory (security.casbinModelFilePath:casbin_enforcer.go:41)
+goroutine 18 [running]:
+runtime/debug.Stack(0x1678ec0, 0xc0004054e0, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+gitlab.99safe.org/Shadow/shadow-framework/logger.(*Logger).logErrorPrint(0xc000010c80, 0xc000466d60, 0xc000466e00, 0x1, 0x1)
+	/Users/terry/go/pkg/mod/gitlab.99safe.org/!shadow/shadow-framework@v0.0.0-20200219021535-18bdef0745be/logger/logger.go:189 +0x133
+gitlab.99safe.org/Shadow/shadow-framework/logger.(*Logger).Panic(0xc000010c80, 0xc000466e00, 0x1, 0x1)
+	/Users/terry/go/pkg/mod/gitlab.99safe.org/!shadow/shadow-framework@v0.0.0-20200219021535-18bdef0745be/logger/logger.go:250 +0x6f
+github.com/terryli1643/apidemo/libs/security.casbinModelFilePath(0x0, 0x0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/security/casbin_enforcer.go:41 +0x2b7
+github.com/terryli1643/apidemo/libs/security.GetCasbinEnforcer(0x0, 0x0, 0x0, 0x13)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/security/casbin_enforcer.go:22 +0x216
+github.com/terryli1643/apidemo/libs/security.TestCasbinFunc(0xc00045a240)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/security/casbin_enforcer_test.go:16 +0x85
+testing.tRunner(0xc00045a240, 0x1770c58)
+	/usr/local/opt/go/libexec/src/testing/testing.go:991 +0xdc
+created by testing.(*T).Run
+	/usr/local/opt/go/libexec/src/testing/testing.go:1042 +0x357
+"
