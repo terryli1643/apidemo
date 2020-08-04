@@ -207,9 +207,9 @@ func (gen *SQLIdGenerator) RestoreID(messed string, key string) int64 {
 }
 
 func (gen *SQLIdGenerator) createTable() {
-	// db := datasource.GetDB()
-	// if db.Migrator().HasTable(&IDSpace{}) {
-	// 	return
-	// }
-	// db.Migrator().CreateTable(&IDSpace{})
+	db := datasource.GetDB()
+	if db.Migrator().HasTable(&IDSpace{}) {
+		return
+	}
+	db.Migrator().CreateTable(&IDSpace{})
 }

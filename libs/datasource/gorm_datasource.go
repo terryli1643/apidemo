@@ -34,10 +34,10 @@ func GetDB() *gorm.DB {
 }
 
 func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
-	// logMode := logger.Default.LogMode(logger.Silent)
-	// if config.SqlDebug == 1 {
-	// 	logMode = logger.Default.LogMode(logger.Info)
-	// }
+	logMode := logger.Default.LogMode(logger.Silent)
+	if config.SqlDebug == 1 {
+		logMode = logger.Default.LogMode(logger.Info)
+	}
 
 	db, err := gorm.Open(mysql.New(mysql.Config{
 		DSN:                       config.DNS,
@@ -47,8 +47,8 @@ func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
 		DontSupportRenameColumn:   true,  // `change` when rename column, rename column not supported before MySQL 8, MariaDB
 		SkipInitializeWithVersion: false, // auto configure based on used version
 	}), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info),
-		// Logger: logMode,
+		// Logger: logger.Default.LogMode(logger.Info),
+		Logger: logMode,
 	})
 
 	if err != nil {
