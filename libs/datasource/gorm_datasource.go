@@ -10,6 +10,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"gorm.io/gorm/schema"
 )
 
 // var dbManger datasource.IDatasourceManager
@@ -18,8 +19,10 @@ var models []interface{}
 var db *gorm.DB
 
 // auto create/migrate table if you want
-func RegisterModels(models ...interface{}) {
-	models = append(models, models...)
+func RegisterModels(m ...interface{}) {
+	l.Lock()
+	models = append(models, m...)
+	l.Unlock()
 }
 
 func GetDB() *gorm.DB {
@@ -34,26 +37,31 @@ func GetDB() *gorm.DB {
 }
 
 func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
-	logMode := logger.Default.LogMode(logger.Silent)
+	logMode := logger.Default.LogMode(logger.Warn)
 	if config.SqlDebug == 1 {
 		logMode = logger.Default.LogMode(logger.Info)
 	}
 
 	db, err := gorm.Open(mysql.New(mysql.Config{
-		DSN:                       config.DNS,
+		DSN:                       config.DSN,
 		DefaultStringSize:         256,   // default size for string fields
 		DisableDatetimePrecision:  true,  // disable datetime precision, which not supported before MySQL 5.6
 		DontSupportRenameIndex:    true,  // drop & create when rename index, rename index not supported before MySQL 5.7, MariaDB
 		DontSupportRenameColumn:   true,  // `change` when rename column, rename column not supported before MySQL 8, MariaDB
 		SkipInitializeWithVersion: false, // auto configure based on used version
 	}), &gorm.Config{
-		// Logger: logger.Default.LogMode(logger.Info),
-		Logger: logMode,
+		Logger:                                   logMode,
+		PrepareStmt:                              true,
+		DisableForeignKeyConstraintWhenMigrating: true,
+		NamingStrategy: schema.NamingStrategy{
+			TablePrefix:   "t_",
+			SingularTable: true,
+		},
 	})
 
 	if err != nil {
 		log.WithFields(log.Fields{
-			"dns":    config.DNS,
+			"dns":    config.DSN,
 			"driver": config.Driver,
 		}).Error("DataSourceManager init error")
 		panic(err)
@@ -64,10 +72,8 @@ func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
 	sqlDB.SetMaxOpenConns(config.MaxPoolSize)
 	sqlDB.SetConnMaxLifetime(time.Duration(config.MaxLifeTime) * time.Second)
 
-	if config.AutoCreate {
-		if len(models) > 0 {
-			db.AutoMigrate(models...)
-		}
+	if config.AutoMigrate && len(models) > 0 {
+		db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(models...)
 	}
 
 	log.WithField("db", db).Debug("create a new db connetion")

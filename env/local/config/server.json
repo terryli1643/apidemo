@@ -1,12 +1,12 @@
 {
     "DataSource": {
-        "DNS": "root:111111@tcp(127.0.0.1:3306)/shadow?charset=utf8&parseTime=True&loc=Local",
+        "DSN": "root:111111@tcp(127.0.0.1:3306)/shadow?charset=utf8&parseTime=True&loc=Local",
         "Driver": "mysql",
         "IdlePoolSize": 30,
         "MaxPoolSize": 200,
         "MaxLifeTime": 60,
         "SqlDebug": 1,
-        "AutoCreate": false
+        "AutoMigrate": true
     },
     "RedisServer": {
         "Password": "",

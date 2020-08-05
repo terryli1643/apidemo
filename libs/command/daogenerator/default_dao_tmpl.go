@@ -7,7 +7,7 @@ import (
 
 	"{{.ModelPkg}}"
 	"github.com/shopspring/decimal"
-	"gitlab.99safe.org/Shadow/shadow-framework/orm/jinzhu/gorm"
+	"gorm.io/gorm"
 )
 
 type {{.ModelName}}Dao struct {
@@ -37,7 +37,7 @@ func (dao *{{.ModelName}}Dao) FindLast(m *model.{{.ModelName}}) error {
 	return dao.db.Last(m, m).Error
 }
 
-func (dao *{{.ModelName}}Dao) FindPage(m *model.{{.ModelName}}, rowbound model.RowBound, desc bool)  (result []model.{{.ModelName}}, count int, err error)  {
+func (dao *{{.ModelName}}Dao) FindPage(m *model.{{.ModelName}}, rowbound model.RowBound, desc bool)  (result []model.{{.ModelName}}, count int64, err error)  {
 	db := dao.db
 	if desc {
 		db = db.Order("id desc")
@@ -47,7 +47,7 @@ func (dao *{{.ModelName}}Dao) FindPage(m *model.{{.ModelName}}, rowbound model.R
 }
 
 func (dao *{{.ModelName}}Dao) Get(m *model.{{.ModelName}}) error {
-	if dao.db.NewRecord(m) {
+	if m.ID == 0 {
 		return errors.New("id is nil")
 	}
 	return dao.db.Find(m).Error
@@ -62,7 +62,7 @@ func (dao *{{.ModelName}}Dao) BatchGet(idbatch []int64) (result []model.{{.Model
 }
 
 func (dao *{{.ModelName}}Dao) GetForUpdate(m *model.{{.ModelName}}) error {
-	if dao.db.NewRecord(m) {
+	if m.ID == 0 {
 		return errors.New("id is nil")
 	}
 	return dao.db.Set("gorm:query_option", "FOR UPDATE").Find(m).Error
@@ -73,7 +73,7 @@ func (dao *{{.ModelName}}Dao) Save(m *model.{{.ModelName}}) error {
 }
 
 func (dao *{{.ModelName}}Dao) Delete(m *model.{{.ModelName}}) error {
-	if dao.db.NewRecord(m) {
+	if m.ID == 0 {
 		return errors.New("id is nil")
 	}
 	{{if CheckField .Columns "deleted_at"}}return dao.db.Unscoped().Delete(m).Error
@@ -81,7 +81,7 @@ func (dao *{{.ModelName}}Dao) Delete(m *model.{{.ModelName}}) error {
 }
 
 {{if CheckField .Columns "deleted_at"}}func (dao *{{.ModelName}}Dao) SoftDelete(m *model.{{.ModelName}}) error {
-	if dao.db.NewRecord(m) {
+	if m.ID == 0 {
 		return errors.New("id is nil")
 	}
 	return dao.db.Delete(m).Error
@@ -117,8 +117,8 @@ func (dao *{{.ModelName}}Dao) BatchUpdaterAttrs(idbatch []int64, attrs map[strin
 	return dao.db.Model(&model.{{.ModelName}}{}).Where("ID in (?)", idbatch).Updates(attrs).Error
 }
 
-func (dao *{{.ModelName}}Dao) Found(m *model.{{.ModelName}}) bool {
-	find := dao.db.First(m, m).RecordNotFound()
-	return !find
+func (dao *{{.ModelName}}Dao) Exsits(m *model.{{.ModelName}}) bool {
+	result := dao.db.First(m)
+	return result.RowsAffected > 0
 }
 `

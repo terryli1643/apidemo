@@ -14,19 +14,14 @@ type TServerConfig struct {
 }
 
 type TDataSourceConfig struct {
-	DNS          string
+	DSN          string
 	Driver       string
 	IdlePoolSize int
 	MaxPoolSize  int
 	MaxLifeTime  int64
 	SqlDebug     int8
-	AutoCreate   bool
+	AutoMigrate  bool
 }
-
-// func NewServerConfig() {
-// 	log.Infoln("ServerConfig init")
-// 	LoadWithFile(file)
-// }
 
 func LoadWithJson(configFile string) {
 	ServerConfig = TServerConfig{}
@@ -35,7 +30,6 @@ func LoadWithJson(configFile string) {
 		log.WithField("file", configFile).Error("server configure init failed, file doesn't exist")
 		log.Panic(err)
 	}
-	log.Info("Server configure", string(data))
 
 	datajson := []byte(data)
 	err = json.Unmarshal(datajson, &ServerConfig)

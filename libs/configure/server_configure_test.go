@@ -16,7 +16,7 @@ func TestServerConfig(t *testing.T) {
 	assert.NotEmpty(t, serverConfigure.DataSource.IdlePoolSize)
 	assert.NotEmpty(t, serverConfigure.DataSource.MaxLifeTime)
 	assert.NotEmpty(t, serverConfigure.DataSource.MaxPoolSize)
-	assert.NotEmpty(t, serverConfigure.DataSource.DNS)
+	assert.NotEmpty(t, serverConfigure.DataSource.DSN)
 	assert.NotEmpty(t, serverConfigure.DataSource.SqlDebug)
 	assert.NotEmpty(t, serverConfigure.DataSource.SqlDebug)
 }

@@ -19,6 +19,7 @@ require (
 	github.com/onsi/ginkgo v1.14.0 // indirect
 	github.com/orcaman/concurrent-map v0.0.0-20190826125027-8c72a8bb44f6 // indirect
 	github.com/serenize/snaker v0.0.0-20171204205717-a683aaf2d516
+	github.com/shopspring/decimal v0.0.0-20200227202807-02e2044944cc
 	github.com/sirupsen/logrus v1.6.0
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/stretchr/testify v1.5.1

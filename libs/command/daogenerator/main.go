@@ -14,6 +14,7 @@ func main() {
 	modelTmpl := flag.String("modeltmpl", "", "template file path")
 	filter := flag.String("filter", "", "filted tablen names, join by ','")
 	genmodel := flag.Bool("genmodel", false, "generate model")
+	tablePrefix := flag.String("tablePrefix", "", "table prefix")
 
 	flag.Parse()
 
@@ -24,8 +25,11 @@ func main() {
 	log.Print("output:" + *output)
 	log.Print("filter:" + *filter)
 	log.Printf("genmodel:%t", *genmodel)
+	log.Print("tablePrefix:" + *tablePrefix)
 
-	processor := &DataProcessor{}
+	processor := &DataProcessor{
+		TablePrefix: *tablePrefix,
+	}
 	processor.prepare()
 
 	generator := &Generator{

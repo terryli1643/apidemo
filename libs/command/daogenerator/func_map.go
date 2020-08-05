@@ -2,11 +2,11 @@ package main
 
 import "html/template"
 
-var TempFuncMap template.FuncMap
+var tempFuncMap template.FuncMap
 
 func init() {
-	TempFuncMap = make(template.FuncMap)
-	TempFuncMap["CheckField"] = CheckField
+	tempFuncMap = make(template.FuncMap)
+	tempFuncMap["CheckField"] = CheckField
 }
 
 func CheckField(fields []Column, fieldName string) bool {

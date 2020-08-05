@@ -24,10 +24,6 @@ type IDSpace struct {
 	end       int64 `gorm:"-"`
 }
 
-func (ids IDSpace) TableName() string {
-	return "t_id_space"
-}
-
 type SQLIdGenerator map[string]*IDSpace
 
 func NewIdGenerator() *SQLIdGenerator {
@@ -171,7 +167,7 @@ func (gen *SQLIdGenerator) Suffix(spaceName string) string {
 //ChaosID 混淆一个int64类型的ID
 func (gen *SQLIdGenerator) ChaosID(id int64, key string) string {
 	base := len(key)
-	//将seed转换为36进制字符串
+	//将seed转换为len(key)进制字符串
 	baseInt := strconv.FormatInt(id, base)
 
 	var num string
@@ -197,7 +193,7 @@ func (gen *SQLIdGenerator) RestoreID(messed string, key string) int64 {
 		}
 	}
 
-	//将36进制字符串转化为10进制
+	//将len(key)进制字符串转化为10进制
 	num, err := strconv.ParseInt(baseInt, base, 64)
 	if err != nil {
 		fmt.Print(err)

@@ -37,13 +37,13 @@ func (gen *Generator) createFile(context string, fileName string) {
 func (gen *Generator) generate() {
 	var daotmpl *template.Template
 	if gen.daoTmpl == "" {
-		t, err := template.New("defaultDao").Funcs(TempFuncMap).Parse(defaultDaoTmpl)
+		t, err := template.New("defaultDao").Funcs(tempFuncMap).Parse(defaultDaoTmpl)
 		if err != nil {
 			panic(err)
 		}
 		daotmpl = t
 	} else {
-		t, err := template.New("defaultDao").Funcs(TempFuncMap).ParseFiles(gen.daoTmpl)
+		t, err := template.New("defaultDao").Funcs(tempFuncMap).ParseFiles(gen.daoTmpl)
 		if err != nil {
 			panic(err)
 		}
@@ -71,16 +71,12 @@ func (gen *Generator) generate() {
 }
 
 func (gen *Generator) GenDao(tmpl *template.Template) {
+loop:
 	for _, table := range gen.processor.Tables {
-		filted := false
-		for i, _ := range gen.filter {
+		for i := range gen.filter {
 			if table.TableName == strings.TrimSpace(gen.filter[i]) {
-				filted = true
-				break
+				continue loop
 			}
-		}
-		if filted {
-			continue
 		}
 		fileName := table.TableName + "_dao.go"
 		gen.createFile("dao", fileName)
@@ -103,16 +99,12 @@ func (gen *Generator) GenDao(tmpl *template.Template) {
 }
 
 func (gen *Generator) GenModel(tmpl *template.Template) {
+loop:
 	for _, table := range gen.processor.Tables {
-		filted := false
-		for i, _ := range gen.filter {
+		for i := range gen.filter {
 			if table.TableName == strings.TrimSpace(gen.filter[i]) {
-				filted = true
-				break
+				continue loop
 			}
-		}
-		if filted {
-			continue
 		}
 		fileName := table.TableName + ".go"
 		gen.createFile("model", fileName)

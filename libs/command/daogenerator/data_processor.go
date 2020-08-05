@@ -3,12 +3,14 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strings"
 
 	"github.com/serenize/snaker"
 )
 
 type DataProcessor struct {
-	Tables []*Table
+	Tables      []*Table
+	TablePrefix string
 }
 
 func (p *DataProcessor) prepare() {
@@ -31,8 +33,8 @@ func (p *DataProcessor) prepare() {
 
 	for _, tableName := range tableNames {
 		table := &Table{
-			TableName: tableName,
-			ModelName: snaker.SnakeToCamel(tableName),
+			TableName: strings.TrimPrefix(tableName, p.TablePrefix),
+			ModelName: snaker.SnakeToCamel(strings.TrimPrefix(tableName, p.TablePrefix)),
 		}
 		p.Tables = append(p.Tables, table)
 
