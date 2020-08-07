@@ -12,8 +12,8 @@ func LoginRouter(r *gin.Engine) {
 }
 
 type Login struct {
-	Username string `form:"Username" json:"Username" binding:"required"`
-	Password string `form:"Password" json:"Password" binding:"required"`
+	Username string `form:"username" json:"username" binding:"required"`
+	Password string `form:"password" json:"password" binding:"required"`
 }
 
 type Result struct {
@@ -32,7 +32,7 @@ func LoginHandler(c *gin.Context) {
 	data := Login{}
 	err = c.Bind(&data)
 	if err != nil {
-		c.Error(err)
+		newClientError(c, err)
 		return
 	}
 	log.Debugf("data is :: %+v", data)

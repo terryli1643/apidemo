@@ -16,28 +16,24 @@ package service
 // 	"gitlab.99safe.org/rrp/rrp-backend/service/dto"
 // )
 
-// type UserService struct {
-// 	PwdEncode    shadowsecurity.IPasswordEncoder
-// 	ServerConfig *server.ServerConfigure
-// 	encryptKey   []byte
-// }
+type UserService struct {
+	encryptKey []byte
+}
 
-// var userServiceObj *UserService
+var userServiceObj *UserService
 
-// func NewUserService() *UserService {
-// 	if userServiceObj == nil {
-// 		l.Lock()
-// 		if userServiceObj == nil {
-// 			userServiceObj = &UserService{
-// 				PwdEncode:    shadowsecurity.PasswordEncoderInstance(shadowsecurity.PASSWORD_ENCODER),
-// 				ServerConfig: server.NewServerConfigure(),
-// 				encryptKey:   []byte("TvggrXNWpvjRZ5GwVWLLtPMQxuXe28ya"),
-// 			}
-// 		}
-// 		l.Unlock()
-// 	}
-// 	return userServiceObj
-// }
+func NewUserService() *UserService {
+	if userServiceObj == nil {
+		l.Lock()
+		if userServiceObj == nil {
+			userServiceObj = &UserService{
+				encryptKey: []byte("TvggrXNWpvjRZ5GwVWLLtPMQxuXe28ya"),
+			}
+		}
+		l.Unlock()
+	}
+	return userServiceObj
+}
 
 // func AdminUserDeatilService() interface{} {
 // 	return NewUserService()
