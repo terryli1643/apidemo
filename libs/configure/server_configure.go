@@ -13,6 +13,7 @@ type TServerConfig struct {
 	DataSource  TDataSourceConfig
 	RedisServer TRedisConfiugre
 	LogRotate   TRotateFileConfig
+	BccServer   TBccServer
 }
 
 type TDataSourceConfig struct {
@@ -41,6 +42,10 @@ type TRotateFileConfig struct {
 	MaxBackups int
 	MaxAge     int
 	Level      string
+}
+
+type TBccServer struct {
+	Port string
 }
 
 func LoadWithJson(configFile string) {

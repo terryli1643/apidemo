@@ -20,7 +20,7 @@ type Logger struct {
 	*logrus.Logger
 }
 
-func InitLog() *Logger {
+func New() *Logger {
 	if log == nil {
 		config := configure.ServerConfig.LogRotate
 

@@ -7,24 +7,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/shopspring/decimal"
 	"github.com/terryli1643/apidemo/libs/logger"
 )
 
-const (
-	PROFILE = "profile"
-	HANDLER = "Handler"
-)
-
-var (
-	log = logger.InitLog()
-)
-
-type CommonResp struct {
-	Code    int         `json:"code"`
-	Body    interface{} `json:"body,omitempty"`
-	Message string      `json:"message"`
-}
+var log = logger.New()
 
 func bindID(c *gin.Context) (int64, error) {
 	var idstr string
@@ -38,6 +24,12 @@ func bindID(c *gin.Context) (int64, error) {
 		return 0, err
 	}
 	return id64, nil
+}
+
+type CommonResp struct {
+	Code    int         `json:"code"`
+	Body    interface{} `json:"body,omitempty"`
+	Message string      `json:"message"`
 }
 
 func newClientError(c *gin.Context, err error) {
@@ -89,15 +81,4 @@ func newSuccess(c *gin.Context) {
 		Code:    http.StatusOK,
 		Message: "success",
 	})
-}
-
-func PercentageForPrint(d decimal.Decimal) decimal.Decimal {
-	return d.Mul(decimal.NewFromFloat(100))
-}
-
-func PercentageForSave(d decimal.Decimal) decimal.Decimal {
-	if d != decimal.Zero {
-		return d.Div(decimal.NewFromFloat(100))
-	}
-	return decimal.Zero
 }

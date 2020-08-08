@@ -6,7 +6,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/terryli1643/apidemo/router/middleware"
+	"github.com/terryli1643/apidemo/api/bcc/middleware"
 )
 
 const (

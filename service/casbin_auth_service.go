@@ -53,6 +53,7 @@ func (provider CasbinAuthService) Authenticate(policy CasbinPolicy) (err error) 
 		param = append(param, policy.Eft)
 	}
 
+	orm.GetCasbinEnforcer().EnableLog(true)
 	if ok, _ := orm.GetCasbinEnforcer().Enforce(param...); !ok {
 		err = errors.New("权限校验失败")
 	}

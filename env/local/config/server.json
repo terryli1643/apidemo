@@ -24,46 +24,8 @@
         "Level": "DEBUG"
     },
     "BccServer": {
-        "BccHost": "http://localhost:8080",
-        "MccHost": "http://localhost:8180",
-        "BccPort": ":8080",
-        "MccPort": ":8180",
-        "BccContextPath": "/bcc",
-        "MccContextPath": "/mcc"
-    },
-    "MapiServer": {
-        "ApiHost": "http://localhost:8000",
-        "ApiPort": ":8000",
-        "ApiContextPath": "/mapi"
-    },
-    "EapiServer": {
-        "ApiHost": "http://localhost:7000",
-        "ApiPort": ":7000",
-        "ApiContextPath": "/eapi"
-    },
-    "PapiServer": {
-        "ApiHost": "http://localhost:7171",
-        "ApiPort": ":7171",
-        "ApiContextPath": "/papi"
-    },
-    "QapiServer": {
-        "ApiHost": "http://localhost:7100",
-        "ApiPort": ":7100",
-        "ApiContextPath": "/qapi"
-    },
-    "QMapiServer": {
-        "ApiHost": "http://localhost:7172",
-        "ApiPort": ":7172",
-        "ApiContextPath": "/qmapi"
-    },
-    "RapiServer": {
-        "ApiHost": "http://localhost:7200",
-        "ApiPort": ":7200",
-        "ApiContextPath": "/rapi"
-    },
-    "AuthServer": {
-        "Addr": "52.193.196.190:58008",
-        "AppID": "RRPTEST"
+        "Port": ":9000",
+        "Context":"/bcc"
     },
     "JPushServer": {
         "AppKey": "ab243c245bbaefca5e338665",

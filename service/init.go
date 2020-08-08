@@ -11,7 +11,7 @@ import (
 
 var (
 	l   sync.Mutex
-	log = logger.InitLog()
+	log = logger.New()
 )
 
 const (

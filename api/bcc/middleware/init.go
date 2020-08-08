@@ -14,7 +14,7 @@ const (
 )
 
 var (
-	log = logger.InitLog()
+	log = logger.New()
 )
 
 func newGenError(c *gin.Context, message string) {
