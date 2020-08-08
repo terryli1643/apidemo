@@ -7,7 +7,7 @@ import (
 
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gomodule/redigo/redis"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/redisclient"
 )
 
@@ -45,7 +45,7 @@ func (service SessionService) CreateSession(token string, userID int64, ip strin
 	defer conn.Close()
 	key := fmt.Sprintf("session:%s:%d:", token, userID)
 
-	log.WithFields(log.Fields{
+	log.WithFields(logrus.Fields{
 		"key":    key,
 		"userID": userID,
 		"IP":     ip,
@@ -141,6 +141,5 @@ func (service SessionService) SetSessionExpireTime(token string, maxLifeTime int
 		return nil
 	}
 	err = errors.New("token expired")
-	log.Error(err)
 	return err
 }

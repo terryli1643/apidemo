@@ -6,7 +6,6 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/dgrijalva/jwt-go/request"
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 )
 
 func JWT(secret string, maxLifeTime int64) gin.HandlerFunc {

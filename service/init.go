@@ -4,13 +4,14 @@ import (
 	"errors"
 	"sync"
 
-	log "github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/datasource"
+	"github.com/terryli1643/apidemo/libs/logger"
 	"gorm.io/gorm"
 )
 
 var (
-	l sync.Mutex
+	l   sync.Mutex
+	log = logger.InitLog()
 )
 
 const (

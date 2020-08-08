@@ -3,7 +3,6 @@ package middleware
 import (
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/service"
 )
 
@@ -25,7 +24,8 @@ func Authorizer() gin.HandlerFunc {
 				Eft:     "",
 			})
 			if err != nil {
-				c.AbortWithError(401, err)
+				log.Error(err)
+				newGenError(c, err.Error())
 				return
 			}
 		} else {
@@ -34,7 +34,20 @@ func Authorizer() gin.HandlerFunc {
 			sessionService := service.NewSessionService()
 			err := sessionService.SetSessionExpireTime(token, service.DefaultMaxLifeTime)
 			if err != nil {
-				log.Warning("validate session expired :", err)
+				log.Warning("Session已过期", err)
+				err := service.NewCasbinAuthService().Authenticate(service.CasbinPolicy{
+					Sub:     "anonymous",
+					Domain:  "",
+					Obj:     c.Request.URL.Path,
+					Act:     c.Request.Method,
+					Service: "",
+					Eft:     "",
+				})
+				if err != nil {
+					log.Error(err)
+					newGenError(c, "Session已过期, "+err.Error())
+					return
+				}
 				return
 			}
 			//验证权限
@@ -48,7 +61,8 @@ func Authorizer() gin.HandlerFunc {
 				Eft:     "",
 			})
 			if err != nil {
-				c.AbortWithError(401, err)
+				log.Error(err)
+				newGenError(c, err.Error())
 				return
 			}
 		}

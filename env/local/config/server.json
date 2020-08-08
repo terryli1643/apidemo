@@ -17,6 +17,12 @@
         "MaxActive": 200,
         "IdleTimeout": 60
     },
+    "LogRotate": {
+        "MaxSize": 10,
+        "MaxBackups": 10,
+        "MaxAge": 7,
+        "Level": "DEBUG"
+    },
     "BccServer": {
         "BccHost": "http://localhost:8080",
         "MccHost": "http://localhost:8180",

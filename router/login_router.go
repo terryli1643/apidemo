@@ -4,7 +4,6 @@ import (
 	"net/http/httputil"
 
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 )
 
 func LoginRouter(r *gin.Engine) {

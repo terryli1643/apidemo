@@ -11,7 +11,8 @@ var ServerConfig TServerConfig
 
 type TServerConfig struct {
 	DataSource  TDataSourceConfig
-	RedisConfig TRedisConfiugre
+	RedisServer TRedisConfiugre
+	LogRotate   TRotateFileConfig
 }
 
 type TDataSourceConfig struct {
@@ -32,6 +33,14 @@ type TRedisConfiugre struct {
 	MaxIdle     int
 	MaxActive   int
 	IdleTimeout int
+}
+
+type TRotateFileConfig struct {
+	Filename   string
+	MaxSize    int
+	MaxBackups int
+	MaxAge     int
+	Level      string
 }
 
 func LoadWithJson(configFile string) {

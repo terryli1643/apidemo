@@ -2,7 +2,6 @@ package service
 
 import (
 	_ "github.com/go-sql-driver/mysql"
-	log "github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/configure"
 )
 

@@ -1,0 +1,205 @@
+[37mDEBU[0m[2020-08-07 16:12:49.219] jwt processing /login POST                   
+[37mDEBU[0m[2020-08-07 16:12:49.220] map[Account:99900000001 AppCode:M1 PID:9093006 Time:2020-05-30T14:27:43.081389831+08:00] 
+[36mINFO[0m[2020-08-07 16:12:49.220] Redis init                                   
+[37mDEBU[0m[2020-08-07 16:12:49.220] Redis init success 127.0.0.1:6379            
+[31mERRO[0m[2020-08-07 16:12:49.366] token expired                                
+[33mWARN[0m[2020-08-07 16:12:49.367] validate session expired :token expired      
+[37mDEBU[0m[2020-08-07 16:12:49.367] POST /login HTTP/1.1
+Host: localhost:9999
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50IjoiOTk5MDAwMDAwMDEiLCJBcHBDb2RlIjoiTTEiLCJQSUQiOiI5MDkzMDA2IiwiVGltZSI6IjIwMjAtMDUtMzBUMTQ6Mjc6NDMuMDgxMzg5ODMxKzA4OjAwIn0.xwqVuUz-xf87Zfpzw6y5ZBWu_ZHpWzeXvHEVVTqGWrQ
+Connection: keep-alive
+Content-Length: 40
+Content-Type: application/json
+Postman-Token: dfb7466b-33b6-4c48-b47f-9a9906ff0e0f
+User-Agent: PostmanRuntime/7.26.1
+
+{"username":"1111", "password": "12321"} 
+[37mDEBU[0m[2020-08-07 16:12:49.367] data is :: {Username:1111 Password:12321}    
+[37mDEBU[0m[2020-08-07 16:49:33.833] jwt processing /login POST                   
+[37mDEBU[0m[2020-08-07 16:49:33.835] map[Account:99900000001 AppCode:M1 PID:9093006 Time:2020-05-30T14:27:43.081389831+08:00] 
+[36mINFO[0m[2020-08-07 16:49:33.835] Redis init                                   
+[37mDEBU[0m[2020-08-07 16:49:33.835] Redis init success 127.0.0.1:6379            
+[33mWARN[0m[2020-08-07 16:49:33.868] validate session expired :token expired      
+[37mDEBU[0m[2020-08-07 16:49:33.868] POST /login HTTP/1.1
+Host: localhost:9999
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50IjoiOTk5MDAwMDAwMDEiLCJBcHBDb2RlIjoiTTEiLCJQSUQiOiI5MDkzMDA2IiwiVGltZSI6IjIwMjAtMDUtMzBUMTQ6Mjc6NDMuMDgxMzg5ODMxKzA4OjAwIn0.xwqVuUz-xf87Zfpzw6y5ZBWu_ZHpWzeXvHEVVTqGWrQ
+Connection: keep-alive
+Content-Length: 40
+Content-Type: application/json
+Postman-Token: fbe4ffd0-1397-4f33-ae06-c5cf1a149de2
+User-Agent: PostmanRuntime/7.26.1
+
+{"username":"1111", "password": "12321"} 
+[37mDEBU[0m[2020-08-07 16:49:33.869] data is :: {Username:1111 Password:12321}    
+[37mDEBU[0m[2020-08-07 17:19:36.958] jwt processing /login POST                   
+[37mDEBU[0m[2020-08-07 17:19:36.960] map[Account:99900000001 AppCode:M1 PID:9093006 Time:2020-05-30T14:27:43.081389831+08:00] 
+[36mINFO[0m[2020-08-07 17:19:36.960] Redis init                                   
+[37mDEBU[0m[2020-08-07 17:19:36.960] Redis init success 127.0.0.1:6379            
+[33mWARN[0m[2020-08-07 17:19:37.021] validate session expired :token expired      
+[37mDEBU[0m[2020-08-07 17:19:37.022] POST /login HTTP/1.1
+Host: localhost:9999
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50IjoiOTk5MDAwMDAwMDEiLCJBcHBDb2RlIjoiTTEiLCJQSUQiOiI5MDkzMDA2IiwiVGltZSI6IjIwMjAtMDUtMzBUMTQ6Mjc6NDMuMDgxMzg5ODMxKzA4OjAwIn0.xwqVuUz-xf87Zfpzw6y5ZBWu_ZHpWzeXvHEVVTqGWrQ
+Connection: keep-alive
+Content-Length: 40
+Content-Type: application/json
+Postman-Token: 3fbac148-dc9a-483c-827b-db58b4bce1dd
+User-Agent: PostmanRuntime/7.26.1
+
+{"username":"1111", "password": "12321"} 
+[37mDEBU[0m[2020-08-07 17:19:37.022] data is :: {Username:1111 Password:12321}    
+[37mDEBU[0m[2020-08-07 17:21:15.431] jwt processing /login POST                   
+[37mDEBU[0m[2020-08-07 17:21:15.434] map[Account:99900000001 AppCode:M1 PID:9093006 Time:2020-05-30T14:27:43.081389831+08:00] 
+[36mINFO[0m[2020-08-07 17:21:15.441] Redis init                                   
+[37mDEBU[0m[2020-08-07 17:21:15.444] Redis init success 127.0.0.1:6379            
+[33mWARN[0m[2020-08-07 17:21:15.459] validate session expired :token expired      
+[37mDEBU[0m[2020-08-07 17:21:15.459] POST /login HTTP/1.1
+Host: localhost:9999
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50IjoiOTk5MDAwMDAwMDEiLCJBcHBDb2RlIjoiTTEiLCJQSUQiOiI5MDkzMDA2IiwiVGltZSI6IjIwMjAtMDUtMzBUMTQ6Mjc6NDMuMDgxMzg5ODMxKzA4OjAwIn0.xwqVuUz-xf87Zfpzw6y5ZBWu_ZHpWzeXvHEVVTqGWrQ
+Connection: keep-alive
+Content-Length: 40
+Content-Type: application/json
+Postman-Token: 1878c70f-ddae-484c-8f0d-2e7013610110
+User-Agent: PostmanRuntime/7.26.1
+
+{"username":"1111", "password": "12321"} 
+[37mDEBU[0m[2020-08-07 17:21:15.459] data is :: {Username:1111 Password:12321}    
+[37mDEBU[0m[2020-08-07 17:25:17.845] jwt processing /login POST                   
+[37mDEBU[0m[2020-08-07 17:25:17.848] map[Account:99900000001 AppCode:M1 PID:9093006 Time:2020-05-30T14:27:43.081389831+08:00] 
+[36mINFO[0m[2020-08-07 17:25:17.848] Redis init                                   
+[37mDEBU[0m[2020-08-07 17:25:17.848] Redis init success 127.0.0.1:6379            
+[33mWARN[0m[2020-08-07 17:25:17.851] validate session expired :token expired      
+[37mDEBU[0m[2020-08-07 17:25:17.852] POST /login HTTP/1.1
+Host: localhost:9999
+Accept: */*
+Accept-Encoding: gzip, deflate, br
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJBY2NvdW50IjoiOTk5MDAwMDAwMDEiLCJBcHBDb2RlIjoiTTEiLCJQSUQiOiI5MDkzMDA2IiwiVGltZSI6IjIwMjAtMDUtMzBUMTQ6Mjc6NDMuMDgxMzg5ODMxKzA4OjAwIn0.xwqVuUz-xf87Zfpzw6y5ZBWu_ZHpWzeXvHEVVTqGWrQ
+Connection: keep-alive
+Content-Length: 40
+Content-Type: application/json
+Postman-Token: 70b20fe0-4878-459c-a8ab-7f77f0fc5a06
+User-Agent: PostmanRuntime/7.26.1
+
+{"username":"1111", "password": "12321"} 
+[37mDEBU[0m[2020-08-07 17:25:17.853] data is :: {Username:1111 Password:12321}    
+[36mINFO[0m[2020-08-08 10:57:47.289] logger init (logger.InitLog:logger.go:52)    
+[33mWARN[0m[2020-08-08 11:01:04.866] validate session expired :token expired (middleware.Authorizer.func1:authorizer.go:37) 
+[36mINFO[0m[2020-08-08 11:05:08.820] logger init (logger.InitLog:logger.go:47)    
+[33mWARN[0m[2020-08-08 11:05:18.879] validate session expired :token expired (middleware.Authorizer.func1:authorizer.go:36) 
+[36mINFO[0m[2020-08-08 11:11:45.392] logger init (logger.InitLog:logger.go:47)    
+[33mWARN[0m[2020-08-08 11:11:50.286] validate session expired :token expired (middleware.Authorizer.func1:authorizer.go:36) 
+[36mINFO[0m[2020-08-08 11:15:21.561] logger init (logger.InitLog:logger.go:47)    
+[33mWARN[0m[2020-08-08 11:15:25.139] validate session expired :token expired (middleware.Authorizer.func1:authorizer.go:36) 
+[31mERRO[0m[2020-08-08 11:15:25.140] 权限校验失败 (middleware.ErrorHandler.func1:error_handler.go:49)
+goroutine 21 [running]:
+runtime/debug.Stack(0x49faca0, 0xc00023ddb0, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+github.com/terryli1643/apidemo/libs/logger.(*Logger).logErrorPrint(0xc0000b4040, 0xc00063b640, 0xc00063b698, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:112 +0x133
+github.com/terryli1643/apidemo/libs/logger.(*Logger).Error(0xc0000b4040, 0xc00063b698, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:165 +0x6f
+github.com/terryli1643/apidemo/router/middleware.ErrorHandler.func1(0xc0001ee000)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/router/middleware/error_handler.go:49 +0x8e
+github.com/gin-gonic/gin.(*Context).Next(0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/terryli1643/apidemo/router/middleware.ConcurrentLimit.func1(0xc0001ee000)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/router/middleware/concurrentlimit.go:66 +0x45d
+github.com/gin-gonic/gin.(*Context).Next(0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.RecoveryWithWriter.func1(0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/recovery.go:83 +0x60
+github.com/gin-gonic/gin.(*Context).Next(0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/logger.go:241 +0xe1
+github.com/gin-gonic/gin.(*Context).Next(0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00031c500, 0xc0001ee000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:409 +0x666
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00031c500, 0x4c65d60, 0xc0001d6000, 0xc0001d2000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:367 +0x14d
+net/http.serverHandler.ServeHTTP(0xc0002940e0, 0x4c65d60, 0xc0001d6000, 0xc0001d2000)
+	/usr/local/opt/go/libexec/src/net/http/server.go:2836 +0xa3
+net/http.(*conn).serve(0xc00030a140, 0x4c6cb60, 0xc00007ca00)
+	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
+created by net/http.(*Server).Serve
+	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 
+[36mINFO[0m[2020-08-08 11:24:57.507] logger init (logger.InitLog:logger.go:47)    
+[33mWARN[0m[2020-08-08 11:25:02.920] Session已过期token expired (middleware.Authorizer.func1:authorizer.go:37) 
+[31mERRO[0m[2020-08-08 11:25:02.922] 权限校验失败 (middleware.Authorizer.func1:authorizer.go:47)
+goroutine 14 [running]:
+runtime/debug.Stack(0x49f9e60, 0xc000114950, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+github.com/terryli1643/apidemo/libs/logger.(*Logger).logErrorPrint(0xc000010048, 0xc0001bf460, 0xc0001bf558, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:112 +0x133
+github.com/terryli1643/apidemo/libs/logger.(*Logger).Error(0xc000010048, 0xc0001bf558, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:165 +0x6f
+github.com/terryli1643/apidemo/router/middleware.Authorizer.func1(0xc00044e1e0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/router/middleware/authorizer.go:47 +0x2a9
+github.com/gin-gonic/gin.(*Context).Next(0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/terryli1643/apidemo/router/middleware.ConcurrentLimit.func1(0xc00044e1e0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/router/middleware/concurrentlimit.go:66 +0x45d
+github.com/gin-gonic/gin.(*Context).Next(0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.RecoveryWithWriter.func1(0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/recovery.go:83 +0x60
+github.com/gin-gonic/gin.(*Context).Next(0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/logger.go:241 +0xe1
+github.com/gin-gonic/gin.(*Context).Next(0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000c6f00, 0xc00044e1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:409 +0x666
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000c6f00, 0x4c64160, 0xc00047e1c0, 0xc000312400)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:367 +0x14d
+net/http.serverHandler.ServeHTTP(0xc00047e0e0, 0x4c64160, 0xc00047e1c0, 0xc000312400)
+	/usr/local/opt/go/libexec/src/net/http/server.go:2836 +0xa3
+net/http.(*conn).serve(0xc0000a57c0, 0x4c6afa0, 0xc000476500)
+	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
+created by net/http.(*Server).Serve
+	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 
+[36mINFO[0m[2020-08-08 11:28:10.017] logger init (logger.InitLog:logger.go:47)    
+[33mWARN[0m[2020-08-08 11:28:15.147] Session已过期token expired (middleware.Authorizer.func1:authorizer.go:37) 
+[31mERRO[0m[2020-08-08 11:28:15.148] 权限校验失败 (middleware.Authorizer.func1:authorizer.go:47)
+goroutine 34 [running]:
+runtime/debug.Stack(0x49f9e40, 0xc000115240, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+github.com/terryli1643/apidemo/libs/logger.(*Logger).logErrorPrint(0xc000010048, 0xc00047f460, 0xc00047f558, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:112 +0x133
+github.com/terryli1643/apidemo/libs/logger.(*Logger).Error(0xc000010048, 0xc00047f558, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:165 +0x6f
+github.com/terryli1643/apidemo/router/middleware.Authorizer.func1(0xc00042e0f0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/router/middleware/authorizer.go:47 +0x2a9
+github.com/gin-gonic/gin.(*Context).Next(0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/terryli1643/apidemo/router/middleware.ConcurrentLimit.func1(0xc00042e0f0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/router/middleware/concurrentlimit.go:66 +0x45d
+github.com/gin-gonic/gin.(*Context).Next(0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.RecoveryWithWriter.func1(0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/recovery.go:83 +0x60
+github.com/gin-gonic/gin.(*Context).Next(0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/logger.go:241 +0xe1
+github.com/gin-gonic/gin.(*Context).Next(0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc0000c6b40, 0xc00042e0f0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:409 +0x666
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc0000c6b40, 0x4c64140, 0xc000458000, 0xc0001d2000)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:367 +0x14d
+net/http.serverHandler.ServeHTTP(0xc0000e20e0, 0x4c64140, 0xc000458000, 0xc0001d2000)
+	/usr/local/opt/go/libexec/src/net/http/server.go:2836 +0xa3
+net/http.(*conn).serve(0xc0003828c0, 0x4c6af80, 0xc0002efac0)
+	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
+created by net/http.(*Server).Serve
+	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 

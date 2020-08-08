@@ -8,6 +8,7 @@ import (
 	"github.com/terryli1643/apidemo/domain/model"
 	"github.com/terryli1643/apidemo/libs/configure"
 	"github.com/terryli1643/apidemo/libs/datasource"
+	"github.com/terryli1643/apidemo/libs/logger"
 	"github.com/terryli1643/apidemo/libs/orm"
 	"github.com/terryli1643/apidemo/router"
 	"golang.org/x/sync/errgroup"
@@ -21,6 +22,8 @@ func init() {
 	model.InitialModels()
 	configure.LoadWithJson("env/local/config/server.json")
 	orm.InitCasbinEnforcer("env/local/config/casbin/rbac_model.conf")
+	logger.InitLog()
+
 }
 
 func main() {
@@ -35,8 +38,6 @@ func main() {
 	g.Go(func() error {
 		return server.ListenAndServe()
 	})
-
-	log.SetLevel(log.DebugLevel)
 
 	if err := g.Wait(); err != nil {
 		log.Fatal(err)

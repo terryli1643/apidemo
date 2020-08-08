@@ -8,12 +8,16 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
 	"github.com/shopspring/decimal"
-	log "github.com/sirupsen/logrus"
+	"github.com/terryli1643/apidemo/libs/logger"
 )
 
 const (
 	PROFILE = "profile"
 	HANDLER = "Handler"
+)
+
+var (
+	log = logger.InitLog()
 )
 
 type CommonResp struct {
@@ -53,19 +57,6 @@ func newClientError(c *gin.Context, err error) {
 
 func parseFieldError(validationErrors validator.ValidationErrors) string {
 	for _, fieldError := range validationErrors {
-		log.WithFields(log.Fields{
-			"FieldError.ActualTag":       fieldError.ActualTag(),
-			"FieldError.Field":           fieldError.Field(),
-			"FieldError.StructNamespace": fieldError.StructNamespace(),
-			"FieldError.Kind":            fieldError.Kind(),
-			"FieldError.Namespace":       fieldError.Namespace(),
-			"FieldError.StructField":     fieldError.StructField(),
-			"FieldError.Param":           fieldError.Param(),
-			"FieldError.Tag":             fieldError.Tag(),
-			"FieldError.Type":            fieldError.Type(),
-			"FieldError.Value":           fieldError.Value(),
-			"FieldError.Translate":       fieldError.Translate,
-		}).Debug("ValidationErrors")
 		if fieldError != nil {
 			return fieldError.Field() + ":" + combineErrorKey(fieldError)
 		}
@@ -74,54 +65,14 @@ func parseFieldError(validationErrors validator.ValidationErrors) string {
 }
 
 func combineErrorKey(fieldError validator.FieldError) string {
-	var message, namespace, actualTag string
-	namespace = fieldError.Namespace()
+	var message, actualTag string
 	actualTag = fieldError.ActualTag()
 
 	switch actualTag {
 	case "required":
 		message = "不能为空"
-		// case "max":
-		// 	message = "最大不能超过" + fieldError.Param()
-		// case "min":
-		// 	message = "不能小于")
-		// case "lt":
-		// 	message = alert.T("key_alert_fielderror_field_lessthan", map[string]interface{}{
-		// 		"nu": fieldError.Param(),
-		// 	})
-		// case "gt":
-		// 	message = alert.T("key_alert_fielderror_field_greaterthan", map[string]interface{}{
-		// 		"nu": fieldError.Param(),
-		// 	})
-		// case "email":
-		// 	message = alert.T("key_alert_fielderror_field_email")
-		// case "alphanum":
-		// 	message = alert.T("key_alert_fielderror_field_alphanum")
-		// case "numeric":
-		// 	message = alert.T("key_alert_fielderror_field_numeric")
-		// case "url":
-		// 	message = alert.T("key_alert_fielderror_field_url")
-		// case "pwdmatch":
-		// 	message = alert.T("key_alert_fielderror_field_pwdmatch")
-		// case "timerange":
-		// 	message = alert.T("key_alert_fielderror_field_timerange")
-		// case "moneyrange":
-		// 	message = alert.T("key_alert_fielderror_field_moneyrange")
-		// case "ip":
-		// 	message = alert.T("key_alert_fielderror_field_ip")
-		// case "ipv4":
-		// 	message = alert.T("key_alert_fielderror_field_ip")
-		// case "ipv6":
-		// 	message = alert.T("key_alert_fielderror_field_ip")
-		// default:
-		// 	Log.WithField("acturelTag", actualTag).Error("illegal acturelTag")
+	default:
 	}
-	log.WithFields(log.Fields{
-		"namespace": namespace,
-		"actualTag": actualTag,
-		"message":   message,
-	}).Debug("TAlert")
-
 	return message
 }
 
