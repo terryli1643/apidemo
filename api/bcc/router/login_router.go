@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func LoginRouter(r *gin.Engine) {
-	r.POST("/login", LoginHandler)
+func LoginRouter(g *gin.RouterGroup) {
+	g.POST("/login", LoginHandler)
 }
 
 type Login struct {

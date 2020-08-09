@@ -31,6 +31,7 @@ func MainRouter() http.Handler {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	LoginRouter(r)
+	g := r.Group(configure.ServerConfig.BccServer.Context)
+	LoginRouter(g)
 	return r
 }
