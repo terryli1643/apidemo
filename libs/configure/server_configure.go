@@ -45,7 +45,8 @@ type TRotateFileConfig struct {
 }
 
 type TBccServer struct {
-	Port string
+	Port    string
+	Context string
 }
 
 func LoadWithJson(configFile string) {

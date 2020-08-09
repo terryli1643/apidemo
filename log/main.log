@@ -36,3 +36,125 @@ net/http.(*conn).serve(0xc000392960, 0x4c5d880, 0xc00041ef00)
 	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
 created by net/http.(*Server).Serve
 	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 
+[36mINFO[0m[2020-08-08 18:35:34.874] logger init (logger.New:logger.go:47)        
+[33mWARN[0m[2020-08-08 18:39:06.789] jwt token errorno token present in request (middleware.JWT.func1:jwt.go:25) 
+[31mERRO[0m[2020-08-08 18:39:06.792] 权限校验失败 (middleware.Authorizer.func1:authorizer.go:27)
+goroutine 37 [running]:
+runtime/debug.Stack(0x49ee9c0, 0xc0002d24d0, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+github.com/terryli1643/apidemo/libs/logger.(*Logger).logErrorPrint(0xc000116038, 0xc000179408, 0xc000179500, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:112 +0x133
+github.com/terryli1643/apidemo/libs/logger.(*Logger).Error(0xc000116038, 0xc000179500, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:165 +0x6f
+github.com/terryli1643/apidemo/api/bcc/middleware.Authorizer.func1(0xc0002f61e0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/api/bcc/middleware/authorizer.go:27 +0x707
+github.com/gin-gonic/gin.(*Context).Next(0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/terryli1643/apidemo/api/bcc/middleware.ConcurrentLimit.func1(0xc0002f61e0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/api/bcc/middleware/concurrentlimit.go:66 +0x45d
+github.com/gin-gonic/gin.(*Context).Next(0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.RecoveryWithWriter.func1(0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/recovery.go:83 +0x60
+github.com/gin-gonic/gin.(*Context).Next(0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/logger.go:241 +0xe1
+github.com/gin-gonic/gin.(*Context).Next(0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.serveError(0xc0002f61e0, 0x194, 0x529daa0, 0x12, 0x12)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:445 +0x38
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc000324640, 0xc0002f61e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:438 +0x3d3
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc000324640, 0x4c56b80, 0xc0001d41c0, 0xc000196400)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:367 +0x14d
+net/http.serverHandler.ServeHTTP(0xc0001d40e0, 0x4c56b80, 0xc0001d41c0, 0xc000196400)
+	/usr/local/opt/go/libexec/src/net/http/server.go:2836 +0xa3
+net/http.(*conn).serve(0xc0001fe320, 0x4c5d880, 0xc0002ef380)
+	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
+created by net/http.(*Server).Serve
+	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 
+[36mINFO[0m[2020-08-08 19:00:30.115] logger init (logger.New:logger.go:47)        
+[33mWARN[0m[2020-08-08 19:00:33.027] jwt token errorno token present in request (middleware.JWT.func1:jwt.go:25) 
+[31mERRO[0m[2020-08-08 19:00:33.030] invalid request size: expected 4, got 3, rvals: [anonymous /bcc/login POST] (service.CasbinAuthService.Authenticate:casbin_auth_service.go:58)
+goroutine 21 [running]:
+runtime/debug.Stack(0x49ee9e0, 0xc0003d8660, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+github.com/terryli1643/apidemo/libs/logger.(*Logger).logErrorPrint(0xc000094030, 0xc0001e5318, 0xc0001e5408, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:112 +0x133
+github.com/terryli1643/apidemo/libs/logger.(*Logger).Error(0xc000094030, 0xc0001e5408, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:165 +0x6f
+github.com/terryli1643/apidemo/service.CasbinAuthService.Authenticate(0x4afd90d, 0x9, 0x4af7c38, 0x0, 0xc000036645, 0xa, 0xc000036640, 0x4, 0x4af7c38, 0x0, ...)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/service/casbin_auth_service.go:58 +0x185
+github.com/terryli1643/apidemo/api/bcc/middleware.Authorizer.func1(0xc0002fe1e0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/api/bcc/middleware/authorizer.go:18 +0x690
+github.com/gin-gonic/gin.(*Context).Next(0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/terryli1643/apidemo/api/bcc/middleware.ConcurrentLimit.func1(0xc0002fe1e0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/api/bcc/middleware/concurrentlimit.go:66 +0x45d
+github.com/gin-gonic/gin.(*Context).Next(0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.RecoveryWithWriter.func1(0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/recovery.go:83 +0x60
+github.com/gin-gonic/gin.(*Context).Next(0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/logger.go:241 +0xe1
+github.com/gin-gonic/gin.(*Context).Next(0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.serveError(0xc0002fe1e0, 0x194, 0x529daa0, 0x12, 0x12)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:445 +0x38
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00038d2c0, 0xc0002fe1e0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:438 +0x3d3
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00038d2c0, 0x4c56ba0, 0xc0000160e0, 0xc000312300)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:367 +0x14d
+net/http.serverHandler.ServeHTTP(0xc0004700e0, 0x4c56ba0, 0xc0000160e0, 0xc000312300)
+	/usr/local/opt/go/libexec/src/net/http/server.go:2836 +0xa3
+net/http.(*conn).serve(0xc0000aed20, 0x4c5d8a0, 0xc0004721c0)
+	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
+created by net/http.(*Server).Serve
+	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 
+[36mINFO[0m[2020-08-08 19:05:39.765] logger init (logger.New:logger.go:47)        
+[33mWARN[0m[2020-08-08 19:05:42.917] jwt token errorno token present in request (middleware.JWT.func1:jwt.go:25) 
+[31mERRO[0m[2020-08-08 19:05:42.918] invalid request size: expected 4, got 3, rvals: [anonymous /bcc/login POST] (service.CasbinAuthService.Authenticate:casbin_auth_service.go:58)
+goroutine 13 [running]:
+runtime/debug.Stack(0x49ee900, 0xc000385d50, 0x1)
+	/usr/local/opt/go/libexec/src/runtime/debug/stack.go:24 +0x9d
+github.com/terryli1643/apidemo/libs/logger.(*Logger).logErrorPrint(0xc000388038, 0xc0001a7318, 0xc0001a7408, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:112 +0x133
+github.com/terryli1643/apidemo/libs/logger.(*Logger).Error(0xc000388038, 0xc0001a7408, 0x1, 0x1)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/libs/logger/logger.go:165 +0x6f
+github.com/terryli1643/apidemo/service.CasbinAuthService.Authenticate(0x4afd84d, 0x9, 0x4af7b78, 0x0, 0xc000037185, 0xa, 0xc000037180, 0x4, 0x4af7b78, 0x0, ...)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/service/casbin_auth_service.go:58 +0x185
+github.com/terryli1643/apidemo/api/bcc/middleware.Authorizer.func1(0xc0004c22d0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/api/bcc/middleware/authorizer.go:19 +0x6ae
+github.com/gin-gonic/gin.(*Context).Next(0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/terryli1643/apidemo/api/bcc/middleware.ConcurrentLimit.func1(0xc0004c22d0)
+	/Users/terry/go/src/github.com/terryli1643/apidemo/api/bcc/middleware/concurrentlimit.go:66 +0x45d
+github.com/gin-gonic/gin.(*Context).Next(0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.RecoveryWithWriter.func1(0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/recovery.go:83 +0x60
+github.com/gin-gonic/gin.(*Context).Next(0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.LoggerWithConfig.func1(0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/logger.go:241 +0xe1
+github.com/gin-gonic/gin.(*Context).Next(0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/context.go:161 +0x3b
+github.com/gin-gonic/gin.serveError(0xc0004c22d0, 0x194, 0x529daa0, 0x12, 0x12)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:445 +0x38
+github.com/gin-gonic/gin.(*Engine).handleHTTPRequest(0xc00013ef00, 0xc0004c22d0)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:438 +0x3d3
+github.com/gin-gonic/gin.(*Engine).ServeHTTP(0xc00013ef00, 0x4c56ae0, 0xc0004ec1c0, 0xc00018e500)
+	/Users/terry/go/pkg/mod/github.com/gin-gonic/gin@v1.6.3/gin.go:367 +0x14d
+net/http.serverHandler.ServeHTTP(0xc0004ec0e0, 0x4c56ae0, 0xc0004ec1c0, 0xc00018e500)
+	/usr/local/opt/go/libexec/src/net/http/server.go:2836 +0xa3
+net/http.(*conn).serve(0xc00011b7c0, 0x4c5d7e0, 0xc00030c240)
+	/usr/local/opt/go/libexec/src/net/http/server.go:1924 +0x86c
+created by net/http.(*Server).Serve
+	/usr/local/opt/go/libexec/src/net/http/server.go:2962 +0x35c 
+[36mINFO[0m[2020-08-08 19:07:26.016] logger init (logger.New:logger.go:47)        
+[33mWARN[0m[2020-08-08 19:07:29.249] jwt token errorno token present in request (middleware.JWT.func1:jwt.go:25) 
+[36mINFO[0m[2020-08-08 19:09:34.436] logger init (logger.New:logger.go:47)        
+[33mWARN[0m[2020-08-08 19:09:42.190] jwt token errorno token present in request (middleware.JWT.func1:jwt.go:25) 

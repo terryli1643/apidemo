@@ -1,0 +1,14 @@
+/vendor/*
+/.vendor-new/
+**/*.log
+**/debug
+**/*.test
+/.vscode/*
+/keys/*
+**/.DS_Store
+.DS_Store
+/.DS_Store
+/version/*.go
+/version/*.txt
+/web/static/report/*
+log.txt

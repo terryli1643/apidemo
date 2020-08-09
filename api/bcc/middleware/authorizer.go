@@ -7,7 +7,7 @@ import (
 )
 
 // Authorizer is a gin midlleware for authorizer request operation
-func Authorizer() gin.HandlerFunc {
+func Authorizer(context string) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if len(c.Errors) > 0 {
 			return
@@ -16,8 +16,8 @@ func Authorizer() gin.HandlerFunc {
 		v, ok := c.Get("jwt_claims")
 		if !ok {
 			err := service.NewCasbinAuthService().Authenticate(service.CasbinPolicy{
-				Sub:     "anonymous",
-				Domain:  "",
+				Sub:     "ROLE_ANONYMOUS",
+				Domain:  context,
 				Obj:     c.Request.URL.Path,
 				Act:     c.Request.Method,
 				Service: "",
@@ -36,8 +36,8 @@ func Authorizer() gin.HandlerFunc {
 			if err != nil {
 				log.Warning("Session已过期", err)
 				err := service.NewCasbinAuthService().Authenticate(service.CasbinPolicy{
-					Sub:     "anonymous",
-					Domain:  "",
+					Sub:     "ROLE_ANONYMOUS",
+					Domain:  context,
 					Obj:     c.Request.URL.Path,
 					Act:     c.Request.Method,
 					Service: "",
@@ -54,7 +54,7 @@ func Authorizer() gin.HandlerFunc {
 			claims := v.(jwt.MapClaims)
 			err = service.NewCasbinAuthService().Authenticate(service.CasbinPolicy{
 				Sub:     claims["Account"].(string),
-				Domain:  "",
+				Domain:  context,
 				Obj:     c.Request.URL.Path,
 				Act:     c.Request.Method,
 				Service: "",
