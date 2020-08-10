@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"fmt"
+
 	jwt "github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/terryli1643/apidemo/service"
@@ -29,10 +31,11 @@ func Authorizer(context string) gin.HandlerFunc {
 				return
 			}
 		} else {
-			token := c.MustGet("jwt_token").(string)
+			claims := v.(jwt.MapClaims)
+			userID := claims["id"].(int64)
 			// 验证session是否过期
 			sessionService := service.NewSessionService()
-			err := sessionService.SetSessionExpireTime(token, service.DefaultMaxLifeTime)
+			err := sessionService.SetSessionTime(userID)
 			if err != nil {
 				log.Warning("Session已过期", err)
 				err := service.NewCasbinAuthService().Authenticate(service.CasbinPolicy{
@@ -51,9 +54,8 @@ func Authorizer(context string) gin.HandlerFunc {
 				return
 			}
 			//验证权限
-			claims := v.(jwt.MapClaims)
 			err = service.NewCasbinAuthService().Authenticate(service.CasbinPolicy{
-				Sub:     claims["Account"].(string),
+				Sub:     fmt.Sprint(userID),
 				Domain:  context,
 				Obj:     c.Request.URL.Path,
 				Act:     c.Request.Method,

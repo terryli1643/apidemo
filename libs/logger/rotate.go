@@ -42,13 +42,13 @@ func (hook *RotateFileHook) Levels() []logrus.Level {
 }
 
 func (hook *RotateFileHook) Fire(entry *logrus.Entry) (err error) {
-	b, err := hook.Formatter.Format(entry)
-	if err != nil {
-		return err
-	}
-	hook.logWriter.Write(b)
 	if daemon.IsDaemonMode() {
 		entry.Logger.Out = ioutil.Discard
+		b, err := hook.Formatter.Format(entry)
+		if err != nil {
+			return err
+		}
+		hook.logWriter.Write(b)
 	} else {
 		entry.Logger.Out = os.Stdout
 	}

@@ -1,5 +1,10 @@
 package service
 
+import (
+	"github.com/terryli1643/apidemo/domain/dao"
+	"github.com/terryli1643/apidemo/domain/model"
+)
+
 // import (
 // 	"errors"
 // 	"fmt"
@@ -16,43 +21,35 @@ package service
 // 	"gitlab.99safe.org/rrp/rrp-backend/service/dto"
 // )
 
-type UserService struct {
+type AdminService struct {
 	encryptKey []byte
 }
 
-var userServiceObj *UserService
+var adminServiceObj *AdminService
 
-func NewUserService() *UserService {
-	if userServiceObj == nil {
+func NewAdminService() *AdminService {
+	if adminServiceObj == nil {
 		l.Lock()
-		if userServiceObj == nil {
-			userServiceObj = &UserService{
+		if adminServiceObj == nil {
+			adminServiceObj = &AdminService{
 				encryptKey: []byte("TvggrXNWpvjRZ5GwVWLLtPMQxuXe28ya"),
 			}
 		}
 		l.Unlock()
 	}
-	return userServiceObj
+	return adminServiceObj
 }
 
-// func AdminUserDeatilService() interface{} {
-// 	return NewUserService()
-// }
+func (service *AdminService) LoadUserByUsername(username string) model.Admin {
+	db := getDB()
+	adminDao := dao.NewAdminDao(db)
+	admin := model.Admin{
+		Account: username,
+	}
+	adminDao.FindOne(&admin)
 
-// func AdminAuthenticationProviders() shadowsecurity.IAuthenticationProvider {
-// 	return NewUserService()
-// }
-
-// func (service *UserService) LoadUserByUsername(username string) shadowsecurity.IUserDetails {
-// 	db := getDB()
-// 	adminDao := dao.NewAdminDao(db)
-// 	admin := model.Admin{
-// 		Account: username,
-// 	}
-// 	adminDao.FindOne(&admin)
-
-// 	return &admin
-// }
+	return admin
+}
 
 // func (service *UserService) Authenticate(authentication shadowsecurity.IAuthentication) shadowsecurity.IAuthentication {
 // 	if requestAuthenticationToken, ok := authentication.(*shadowsecurity.TRequestAuthenticationToken); ok {

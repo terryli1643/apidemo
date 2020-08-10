@@ -5,7 +5,7 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/configure"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -37,10 +37,11 @@ func GetDB() *gorm.DB {
 }
 
 func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
-	logMode := logger.Default.LogMode(logger.Warn)
-	if config.SqlDebug == 1 {
-		logMode = logger.Default.LogMode(logger.Info)
-	}
+	sqlLog := logger.New(log, logger.Config{
+		SlowThreshold: 100 * time.Millisecond,
+		LogLevel:      logger.Info,
+		Colorful:      true,
+	})
 
 	db, err := gorm.Open(mysql.New(mysql.Config{
 		DSN:                       config.DSN,
@@ -50,7 +51,7 @@ func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
 		DontSupportRenameColumn:   true,  // `change` when rename column, rename column not supported before MySQL 8, MariaDB
 		SkipInitializeWithVersion: false, // auto configure based on used version
 	}), &gorm.Config{
-		Logger:                                   logMode,
+		Logger:                                   sqlLog,
 		PrepareStmt:                              true,
 		DisableForeignKeyConstraintWhenMigrating: true,
 		NamingStrategy: schema.NamingStrategy{
@@ -60,7 +61,7 @@ func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
 	})
 
 	if err != nil {
-		log.WithFields(log.Fields{
+		log.WithFields(logrus.Fields{
 			"dns":    config.DSN,
 			"driver": config.Driver,
 		}).Error("DataSourceManager init error")

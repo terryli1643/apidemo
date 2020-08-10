@@ -1,8 +1,6 @@
 package router
 
 import (
-	"net/http/httputil"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -20,20 +18,11 @@ type Result struct {
 }
 
 func LoginHandler(c *gin.Context) {
-	dump, err := httputil.DumpRequest(c.Request, true)
-	if err != nil {
-		log.Error(err)
-		return
-	}
-
-	log.Debug(string(dump))
-
 	data := Login{}
-	err = c.Bind(&data)
+	err := c.Bind(&data)
 	if err != nil {
 		newClientError(c, err)
 		return
 	}
-	log.Debugf("data is :: %+v", data)
 	c.JSON(200, Result{Msg: "Success"})
 }
