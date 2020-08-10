@@ -40,7 +40,7 @@ func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
 	sqlLog := logger.New(log, logger.Config{
 		SlowThreshold: 100 * time.Millisecond,
 		LogLevel:      logger.Info,
-		Colorful:      true,
+		Colorful:      false,
 	})
 
 	db, err := gorm.Open(mysql.New(mysql.Config{

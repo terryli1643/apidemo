@@ -2,6 +2,7 @@ package logger
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"os/exec"
 	"path"
@@ -10,44 +11,59 @@ import (
 	"runtime/debug"
 	"strings"
 
+	"github.com/gin-gonic/gin"
 	"github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/configure"
+	"github.com/terryli1643/apidemo/libs/daemon"
+	lumberjack "gopkg.in/natefinch/lumberjack.v2"
 )
 
-var log *Logger
+func init() {
+	configure.LoadWithJson("env/local/config/server.json")
+}
+
+var myLog *Logger
 
 type Logger struct {
 	*logrus.Logger
 }
 
 func New() *Logger {
-	if log == nil {
+	if myLog == nil {
+
 		config := configure.ServerConfig.LogRotate
 
-		log = &Logger{}
-		log.Logger = logrus.New()
+		myLog = &Logger{}
+		myLog.Logger = logrus.StandardLogger()
+
+		fullPath, _ := exec.LookPath(os.Args[0])
+		fname := "log"
+		if strings.TrimSpace(fname) != "" {
+			fname = filepath.Base(fullPath)
+		}
+
 		formatter := &logrus.TextFormatter{
 			FullTimestamp:   true,
 			TimestampFormat: "2006-01-02 15:04:05.000",
+			// DisableColors:   true,
 		}
-
-		fullPath, _ := exec.LookPath(os.Args[0])
-		fname := filepath.Base(fullPath)
-
-		hook := NewRotateFileHook(configure.TRotateFileConfig{
-			Filename:   "./log/" + fname + ".log",
-			MaxSize:    config.MaxSize,
-			MaxBackups: config.MaxBackups,
-			MaxAge:     config.MaxAge,
-		}, formatter)
-
-		log.AddHook(hook)
-		log.Formatter = formatter
-		log.SetLogLevel(config.Level)
-		log.Info("logger init")
+		myLog.SetFormatter(formatter)
+		myLog.SetLogLevel(config.Level)
+		if daemon.IsDaemonMode() {
+			writer := &lumberjack.Logger{
+				Filename:   "./log/" + fname + ".log",
+				MaxSize:    config.MaxSize,
+				MaxBackups: config.MaxBackups,
+				MaxAge:     config.MaxAge,
+			}
+			myLog.SetOutput(writer)
+			log.SetOutput(myLog.Writer())
+			gin.DefaultWriter = myLog.Writer()
+		}
+		myLog.Info("logger init")
 	}
 
-	return log
+	return myLog
 
 }
 
@@ -57,13 +73,6 @@ type TLogConfig struct {
 	MaxBackups int
 	MaxAge     int
 	Level      string
-}
-
-func (log *Logger) Output(calldepth int, s string) error {
-	// line := log.getLineNumer(calldepth)
-	// log.Logger.Debug(s, line)
-	log.Debug(s)
-	return nil
 }
 
 func (log *Logger) getLineNumer(skip int) string {
@@ -252,14 +261,14 @@ func (log *Logger) WithFields(fields logrus.Fields) *logrus.Entry {
 func (log *Logger) SetLogLevel(level string) {
 	switch level {
 	case "INFO":
-		log.SetLevel(logrus.InfoLevel)
+		log.Logger.SetLevel(logrus.InfoLevel)
 	case "WARN":
-		log.SetLevel(logrus.WarnLevel)
+		log.Logger.SetLevel(logrus.WarnLevel)
 	case "ERROR":
-		log.SetLevel(logrus.ErrorLevel)
+		log.Logger.SetLevel(logrus.ErrorLevel)
 	case "DEBUG":
-		log.SetLevel(logrus.DebugLevel)
+		log.Logger.SetLevel(logrus.DebugLevel)
 	default:
-		log.SetLevel(logrus.InfoLevel)
+		log.Logger.SetLevel(logrus.InfoLevel)
 	}
 }

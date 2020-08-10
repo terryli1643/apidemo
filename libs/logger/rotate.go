@@ -2,12 +2,10 @@ package logger
 
 import (
 	"io"
-	"io/ioutil"
-	"os"
 
 	"github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/configure"
-	"github.com/terryli1643/apidemo/libs/daemon"
+	_ "github.com/terryli1643/apidemo/libs/daemon"
 	lumberjack "gopkg.in/natefinch/lumberjack.v2"
 )
 
@@ -42,16 +40,16 @@ func (hook *RotateFileHook) Levels() []logrus.Level {
 }
 
 func (hook *RotateFileHook) Fire(entry *logrus.Entry) (err error) {
-	if daemon.IsDaemonMode() {
-		entry.Logger.Out = ioutil.Discard
-		b, err := hook.Formatter.Format(entry)
-		if err != nil {
-			return err
-		}
-		hook.logWriter.Write(b)
-	} else {
-		entry.Logger.Out = os.Stdout
+	// if daemon.IsDaemonMode() {
+	// entry.Logger.Out = ioutil.Discard
+	b, err := hook.Formatter.Format(entry)
+	if err != nil {
+		return err
 	}
+	hook.logWriter.Write(b)
+	// } else {
+	// 	entry.Logger.Out = os.Stdout
+	// }
 
 	return nil
 }

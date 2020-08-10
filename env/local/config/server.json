@@ -5,7 +5,6 @@
         "IdlePoolSize": 30,
         "MaxPoolSize": 200,
         "MaxLifeTime": 60,
-        "SqlDebug": 1,
         "AutoMigrate": true
     },
     "RedisServer": {
@@ -25,7 +24,7 @@
     },
     "BccServer": {
         "Port": ":9000",
-        "Context":"/bcc"
+        "Context": "/bcc"
     },
     "JPushServer": {
         "AppKey": "ab243c245bbaefca5e338665",

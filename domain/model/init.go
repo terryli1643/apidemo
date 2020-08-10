@@ -2,9 +2,11 @@ package model
 
 import (
 	"github.com/gin-gonic/gin"
-	log "github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/datasource"
+	"github.com/terryli1643/apidemo/libs/logger"
 )
+
+var log = logger.New()
 
 // swagger:model
 type (

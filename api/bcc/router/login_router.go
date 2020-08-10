@@ -18,6 +18,7 @@ type Result struct {
 }
 
 func LoginHandler(c *gin.Context) {
+	log.Debug("11111111111111111")
 	data := Login{}
 	err := c.Bind(&data)
 	if err != nil {

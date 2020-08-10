@@ -3,8 +3,7 @@ package configure
 import (
 	"encoding/json"
 	"io/ioutil"
-
-	log "github.com/sirupsen/logrus"
+	"log"
 )
 
 var ServerConfig TServerConfig
@@ -22,7 +21,6 @@ type TDataSourceConfig struct {
 	IdlePoolSize int
 	MaxPoolSize  int
 	MaxLifeTime  int64
-	SqlDebug     int8
 	AutoMigrate  bool
 }
 
@@ -53,7 +51,7 @@ func LoadWithJson(configFile string) {
 	ServerConfig = TServerConfig{}
 	data, err := ioutil.ReadFile(configFile)
 	if err != nil {
-		log.WithField("file", configFile).Error("server configure init failed, file doesn't exist")
+		log.Printf("server configure init failed, file doesn't exist, %s", configFile)
 		log.Panic(err)
 	}
 
@@ -62,5 +60,5 @@ func LoadWithJson(configFile string) {
 	if err != nil {
 		log.Panic(err)
 	}
-	log.Infof("%+v", ServerConfig)
+	log.Printf("%+v", ServerConfig)
 }

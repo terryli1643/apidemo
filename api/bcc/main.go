@@ -4,24 +4,22 @@ import (
 	"net/http"
 	"time"
 
+	"github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/api/bcc/router"
 	"github.com/terryli1643/apidemo/domain/model"
 	"github.com/terryli1643/apidemo/libs/configure"
-	"github.com/terryli1643/apidemo/libs/logger"
 	"github.com/terryli1643/apidemo/libs/orm"
 	"golang.org/x/sync/errgroup"
 )
 
 var (
-	g   errgroup.Group
-	log = logger.New()
+	g errgroup.Group
 )
 
 func init() {
-	model.InitialModels()
 	configure.LoadWithJson("env/local/config/server.json")
+	model.InitialModels()
 	orm.InitCasbinEnforcer("env/local/config/casbin/rbac_model.conf")
-
 }
 
 func main() {
@@ -37,6 +35,6 @@ func main() {
 	})
 
 	if err := g.Wait(); err != nil {
-		log.Fatal(err)
+		logrus.Fatal(err)
 	}
 }
