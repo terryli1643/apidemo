@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/terryli1643/apidemo/libs/orm"
+	log "github.com/terryli1643/apidemo/libs/logger"
 )
 
 type CasbinAuthService struct {

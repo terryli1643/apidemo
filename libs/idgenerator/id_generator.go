@@ -24,6 +24,10 @@ type IDSpace struct {
 	end       int64 `gorm:"-"`
 }
 
+func (idSpace IDSpace) TableName() string {
+	return "id_space"
+}
+
 type SQLIdGenerator map[string]*IDSpace
 
 func NewIdGenerator() *SQLIdGenerator {

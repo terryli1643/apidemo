@@ -18,10 +18,6 @@ import (
 	lumberjack "gopkg.in/natefinch/lumberjack.v2"
 )
 
-func init() {
-	configure.LoadWithJson("env/local/config/server.json")
-}
-
 var myLog *Logger
 
 type Logger struct {
@@ -31,7 +27,7 @@ type Logger struct {
 func New() *Logger {
 	if myLog == nil {
 
-		config := configure.ServerConfig.LogRotate
+		config := configure.New().LogRotate
 
 		myLog = &Logger{}
 		myLog.Logger = logrus.StandardLogger()
@@ -122,140 +118,115 @@ func (log *Logger) logErrorPrint(fn FLogPrint, args ...interface{}) {
 	fn(arr...)
 }
 
-func (log *Logger) Debugf(format string, args ...interface{}) {
-	log.logPrintf(log.Logger.Debugf, format, args...)
+func Debugf(format string, args ...interface{}) {
+	New().logPrintf(myLog.Logger.Debugf, format, args...)
 }
 
-func (log *Logger) Infof(format string, args ...interface{}) {
-	log.logPrintf(log.Logger.Infof, format, args...)
+func Infof(format string, args ...interface{}) {
+	New().logPrintf(myLog.Logger.Infof, format, args...)
 }
 
-func (log *Logger) Warnf(format string, args ...interface{}) {
-	log.logPrintf(log.Logger.Warnf, format, args...)
+func Warnf(format string, args ...interface{}) {
+	New().logPrintf(myLog.Logger.Warnf, format, args...)
 }
 
-func (log *Logger) Warningf(format string, args ...interface{}) {
-	log.logPrintf(log.Logger.Warningf, format, args...)
+func Warningf(format string, args ...interface{}) {
+	New().logPrintf(myLog.Logger.Warningf, format, args...)
 }
 
-func (log *Logger) Errorf(format string, args ...interface{}) {
-	log.logErrorPrintf(log.Logger.Errorf, format, args...)
+func Errorf(format string, args ...interface{}) {
+	New().logErrorPrintf(myLog.Logger.Errorf, format, args...)
 }
 
-func (log *Logger) Fatalf(format string, args ...interface{}) {
-	log.logErrorPrintf(log.Logger.Fatalf, format, args...)
+func Fatalf(format string, args ...interface{}) {
+	New().logErrorPrintf(myLog.Logger.Fatalf, format, args...)
 }
 
-func (log *Logger) Panicf(format string, args ...interface{}) {
-	log.logErrorPrintf(log.Logger.Panicf, format, args...)
+func Panicf(format string, args ...interface{}) {
+	New().logErrorPrintf(myLog.Logger.Panicf, format, args...)
 }
 
-func (log *Logger) Debug(args ...interface{}) {
-	log.logPrint(log.Logger.Debug, args...)
+func Debug(args ...interface{}) {
+	New().logPrint(myLog.Logger.Debug, args...)
 }
 
-func (log *Logger) Info(args ...interface{}) {
-	log.logPrint(log.Logger.Info, args...)
+func Info(args ...interface{}) {
+	New().logPrint(myLog.Logger.Info, args...)
 }
 
-func (log *Logger) Print(args ...interface{}) {
-	log.logPrint(log.Logger.Print, args...)
+func Print(args ...interface{}) {
+	New().logPrint(myLog.Logger.Print, args...)
 }
 
-func (log *Logger) Warn(args ...interface{}) {
-	log.logPrint(log.Logger.Warn, args...)
+func Warn(args ...interface{}) {
+	New().logPrint(myLog.Logger.Warn, args...)
 }
 
-func (log *Logger) Warning(args ...interface{}) {
-	log.logPrint(log.Logger.Warning, args...)
+func Warning(args ...interface{}) {
+	New().logPrint(myLog.Logger.Warning, args...)
 }
 
-func (log *Logger) Error(args ...interface{}) {
-	log.logErrorPrint(log.Logger.Error, args...)
+func Error(args ...interface{}) {
+	New().logErrorPrint(myLog.Logger.Error, args...)
 }
 
-func (log *Logger) Fatal(args ...interface{}) {
-	log.logErrorPrint(log.Logger.Fatal, args...)
+func Fatal(args ...interface{}) {
+	New().logErrorPrint(myLog.Logger.Fatal, args...)
 }
 
-func (log *Logger) Panic(args ...interface{}) {
-	log.logErrorPrint(log.Logger.Panic, args...)
+func Panic(args ...interface{}) {
+	New().logErrorPrint(myLog.Logger.Panic, args...)
 }
 
-func (log *Logger) Debugln(args ...interface{}) {
-	log.logPrint(log.Logger.Debugln, args...)
+func Debugln(args ...interface{}) {
+	New().logPrint(myLog.Logger.Debugln, args...)
 }
 
-func (log *Logger) Infoln(args ...interface{}) {
-	log.logPrint(log.Logger.Infoln, args...)
+func Infoln(args ...interface{}) {
+	New().logPrint(myLog.Logger.Infoln, args...)
 }
 
-func (log *Logger) Println(args ...interface{}) {
-	log.logPrint(log.Logger.Println, args...)
+func Println(args ...interface{}) {
+	New().logPrint(myLog.Logger.Println, args...)
 }
 
-func (log *Logger) Warnln(args ...interface{}) {
-	log.logPrint(log.Logger.Warnln, args...)
+func Warnln(args ...interface{}) {
+	New().logPrint(myLog.Logger.Warnln, args...)
 }
 
-func (log *Logger) Warningln(args ...interface{}) {
-	log.logPrint(log.Logger.Warningln, args...)
+func Warningln(args ...interface{}) {
+	New().logPrint(myLog.Logger.Warningln, args...)
 }
 
-func (log *Logger) Errorln(args ...interface{}) {
-	log.logErrorPrint(log.Logger.Errorln, args...)
+func Errorln(args ...interface{}) {
+	New().logErrorPrint(myLog.Logger.Errorln, args...)
 }
 
-func (log *Logger) Fatalln(args ...interface{}) {
-	log.logErrorPrint(log.Logger.Fatalln, args...)
+func Fatalln(args ...interface{}) {
+	New().logErrorPrint(myLog.Logger.Fatalln, args...)
 }
 
-func (log *Logger) Panicln(args ...interface{}) {
-	log.logErrorPrint(log.Logger.Panicln, args...)
+func Panicln(args ...interface{}) {
+	New().logErrorPrint(myLog.Logger.Panicln, args...)
 }
 
-// func (log *Logger) sqlLogPrint(fn FLogPrint, args ...interface{}) {
-// 	lineNum := log.getLineNumer(3)
-// 	var arr []interface{}
-// 	arr = append(arr, args...)
-// 	arr = append(arr, lineNum)
+func WithField(key string, value interface{}) *logrus.Entry {
 
-// 	fn(arr...)
-// }
-
-func (log *Logger) SqlDebug(args ...interface{}) {
-	// log.sqlLogPrint(log.Logger.Debug, args...)
-	argstr := fmt.Sprintf("%+v", args)
-
-	ignorestr := `/*no print*/`
-	if strings.Contains(argstr, ignorestr) {
-		return
-	}
-
-	if strings.Contains(argstr, "Error") {
-		log.Error(args...)
-	} else {
-		log.Debug(args...)
-	}
-}
-
-func (log *Logger) WithField(key string, value interface{}) *logrus.Entry {
-
-	lineNum := log.getLineNumer(2)
+	lineNum := New().getLineNumer(2)
 
 	fields := logrus.Fields{
 		key:        value,
 		"~LineNum": lineNum,
 	}
 
-	return log.Logger.WithFields(fields)
+	return myLog.Logger.WithFields(fields)
 }
 
-func (log *Logger) WithFields(fields logrus.Fields) *logrus.Entry {
-	lineNum := log.getLineNumer(2)
+func WithFields(fields logrus.Fields) *logrus.Entry {
+	lineNum := New().getLineNumer(2)
 	fields["~LineNum"] = lineNum
 
-	return log.Logger.WithFields(fields)
+	return myLog.Logger.WithFields(fields)
 }
 
 func (log *Logger) SetLogLevel(level string) {

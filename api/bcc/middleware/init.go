@@ -4,17 +4,12 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/terryli1643/apidemo/libs/logger"
 )
 
 const (
 	MENUS   = "menus"
 	PROFILE = "profile"
 	HANDLER = "Handler"
-)
-
-var (
-	log = logger.New()
 )
 
 func newGenError(c *gin.Context, message string) {

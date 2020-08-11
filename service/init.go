@@ -5,13 +5,12 @@ import (
 	"sync"
 
 	"github.com/terryli1643/apidemo/libs/datasource"
-	"github.com/terryli1643/apidemo/libs/logger"
+	log "github.com/terryli1643/apidemo/libs/logger"
 	"gorm.io/gorm"
 )
 
 var (
-	l   sync.Mutex
-	log = logger.New()
+	l sync.Mutex
 )
 
 const (

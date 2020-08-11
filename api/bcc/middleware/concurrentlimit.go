@@ -9,6 +9,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/terryli1643/apidemo/libs/iptool"
+	log "github.com/terryli1643/apidemo/libs/logger"
 )
 
 //并发数map，key为ip，value为当前并发数

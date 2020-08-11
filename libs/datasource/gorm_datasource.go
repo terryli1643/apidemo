@@ -7,6 +7,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/sirupsen/logrus"
 	"github.com/terryli1643/apidemo/libs/configure"
+	log "github.com/terryli1643/apidemo/libs/logger"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
@@ -30,14 +31,14 @@ func GetDB() *gorm.DB {
 		l.Lock()
 		defer l.Unlock()
 		if db == nil {
-			db = openConn(configure.ServerConfig.DataSource)
+			db = openConn(configure.New().DataSource)
 		}
 	}
 	return db
 }
 
 func openConn(config configure.TDataSourceConfig) (db *gorm.DB) {
-	sqlLog := logger.New(log, logger.Config{
+	sqlLog := logger.New(log.New().Logger, logger.Config{
 		SlowThreshold: 100 * time.Millisecond,
 		LogLevel:      logger.Info,
 		Colorful:      false,

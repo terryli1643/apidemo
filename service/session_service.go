@@ -4,12 +4,15 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gomodule/redigo/redis"
+	log "github.com/terryli1643/apidemo/libs/logger"
 	"github.com/terryli1643/apidemo/libs/redisclient"
 )
 
 const (
-	SessionKey = "session:online"
+	SessionKey       = "session:online"
+	HmacSampleSecret = "wErUOtNOXiPHVPunb9Y0tn$KmatydruRTKlaUdup9newmb9Y0du$2a$10"
 )
 
 type SessionService struct {
@@ -28,6 +31,33 @@ func NewSessionService() *SessionService {
 	return sessionServiceObj
 }
 
+//CreateJWT 创建登陆令牌
+func (service SessionService) CreateJWT(claims map[string]interface{}) (tokenString string, err error) {
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims(claims))
+	tokenString, err = token.SignedString([]byte(HmacSampleSecret))
+	if err != nil {
+		log.Error(err)
+	}
+	return
+}
+
+func (service SessionService) CreateSession(userID int64, account string) (token string, err error) {
+	claim := map[string]interface{}{
+		"id":      userID,
+		"account": account,
+	}
+	token, err = service.CreateJWT(claim)
+	if err != nil {
+		log.Error(err)
+		return
+	}
+	err = service.SetSessionTime(userID)
+	if err != nil {
+		log.Error(err)
+	}
+	return
+}
+
 //根据用户ID删除session
 func (service SessionService) DeleteSession(userID int64) error {
 	conn := redisclient.GetConn()
@@ -39,6 +69,19 @@ func (service SessionService) DeleteSession(userID int64) error {
 		return err
 	}
 	return nil
+}
+
+func (service SessionService) CheckSessionExpired(userID int64) (ok bool) {
+	conn := redisclient.GetConn()
+	defer conn.Close()
+
+	_, err := redis.Int64(conn.Do("ZRANK", SessionKey, userID))
+	if err != nil {
+		ok = false
+	} else {
+		ok = true
+	}
+	return
 }
 
 //记录付客账号在线的心跳时间

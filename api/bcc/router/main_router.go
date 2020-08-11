@@ -10,18 +10,13 @@ import (
 	"github.com/terryli1643/apidemo/libs/configure"
 )
 
-const (
-	hmacSampleSecret = "wErUOtNOXiPHVPunb9Y0tn$KmatydruRTKlaUdup9newmb9Y0du$2a$10"
-	hmacSecureSecret = "WErUOtNOXiPHVPunb9Y0tn$KmatydruRTKlaUdup9newmb9Y0du$2a$10"
-)
-
 func MainRouter() http.Handler {
 	r := gin.New()
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 	r.Use(middleware.ConcurrentLimit(20, 5*time.Minute))
-	r.Use(middleware.JWT(hmacSampleSecret, 3600))
-	r.Use(middleware.Authorizer(configure.ServerConfig.BccServer.Context))
+	r.Use(middleware.JWT())
+	r.Use(middleware.Authorizer(configure.New().BccServer.Context))
 	r.Use(cors.New(cors.Config{
 		AllowAllOrigins:  true,
 		AllowMethods:     []string{"GET", "POST", "PUT", "HEAD", "PATCH", "DELETE", "OPTIONS"},
@@ -31,7 +26,7 @@ func MainRouter() http.Handler {
 		MaxAge:           12 * time.Hour,
 	}))
 
-	g := r.Group(configure.ServerConfig.BccServer.Context)
+	g := r.Group(configure.New().BccServer.Context)
 	LoginRouter(g)
 	return r
 }

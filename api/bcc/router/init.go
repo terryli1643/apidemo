@@ -7,10 +7,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-playground/validator/v10"
-	"github.com/terryli1643/apidemo/libs/logger"
+	log "github.com/terryli1643/apidemo/libs/logger"
 )
-
-var log = logger.New()
 
 func bindID(c *gin.Context) (int64, error) {
 	var idstr string

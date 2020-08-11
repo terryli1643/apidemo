@@ -15,7 +15,7 @@ var (
 func GetConn() redis.Conn {
 	if client == nil {
 		log.Info("Redis init")
-		config := configure.ServerConfig.RedisServer
+		config := configure.New().RedisServer
 		client = &redis.Pool{
 			MaxIdle:     config.MaxIdle,
 			MaxActive:   config.MaxActive,

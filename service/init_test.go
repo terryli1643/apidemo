@@ -6,6 +6,5 @@ import (
 )
 
 func init() {
-	log.Infoln("service_test init")
-	configure.LoadWithJson("../env/local/config/server.json")
+	configure.Path = "../env/local/config/server.json"
 }

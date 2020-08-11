@@ -10,7 +10,7 @@ import (
 
 func init() {
 	log.Infoln("id_generator_test init")
-	configure.LoadWithJson("../../env/local/config/server.json")
+	configure.Path = "../../env/local/config/server.json"
 }
 
 func TestGenerateStringID(t *testing.T) {

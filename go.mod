@@ -18,7 +18,7 @@ require (
 	github.com/sirupsen/logrus v1.6.0
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
 	github.com/stretchr/testify v1.6.1
-	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de // indirect
+	golang.org/x/crypto v0.0.0-20200728195943-123391ffb6de
 	golang.org/x/sync v0.0.0-20200625203802-6e8e738ad208
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0
 	gorm.io/driver/mysql v0.3.1

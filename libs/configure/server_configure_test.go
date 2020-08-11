@@ -7,7 +7,7 @@ import (
 )
 
 func init() {
-	LoadWithJson("../../env/local/config/server.json")
+	Path = "../../env/local/config/server.json"
 }
 
 func TestServerConfig(t *testing.T) {

@@ -1,7 +1,11 @@
 package router
 
 import (
+	"errors"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
+	"github.com/terryli1643/apidemo/service"
 )
 
 func LoginRouter(g *gin.RouterGroup) {
@@ -18,12 +22,31 @@ type Result struct {
 }
 
 func LoginHandler(c *gin.Context) {
-	log.Debug("11111111111111111")
 	data := Login{}
 	err := c.Bind(&data)
+	if err != nil {
+		err = errors.New("用户名密码错误")
+		newClientError(c, err)
+		return
+	}
+
+	adminService := service.NewAdminService()
+	admin, err := adminService.GetAdminByLoginName(data.Username)
+	if err != nil {
+		err = errors.New("用户名密码错误")
+		newClientError(c, err)
+		return
+	}
+
+	sessionService := service.NewSessionService()
+	token, err := sessionService.CreateSession(admin.ID, admin.Account)
 	if err != nil {
 		newClientError(c, err)
 		return
 	}
-	c.JSON(200, Result{Msg: "Success"})
+	c.JSON(http.StatusOK, CommonResp{
+		Code:    http.StatusOK,
+		Message: "success",
+		Body:    token,
+	})
 }

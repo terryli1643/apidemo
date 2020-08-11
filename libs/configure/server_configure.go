@@ -6,7 +6,8 @@ import (
 	"log"
 )
 
-var ServerConfig TServerConfig
+var Path = "env/local/config/server.json"
+var ServerConfig *TServerConfig
 
 type TServerConfig struct {
 	DataSource  TDataSourceConfig
@@ -47,11 +48,17 @@ type TBccServer struct {
 	Context string
 }
 
-func LoadWithJson(configFile string) {
-	ServerConfig = TServerConfig{}
-	data, err := ioutil.ReadFile(configFile)
+func New() *TServerConfig {
+	if ServerConfig == nil {
+		loadWithJson()
+	}
+	return ServerConfig
+}
+
+func loadWithJson() {
+	data, err := ioutil.ReadFile(Path)
 	if err != nil {
-		log.Printf("server configure init failed, file doesn't exist, %s", configFile)
+		log.Printf("server configure init failed, file doesn't exist, %s", Path)
 		log.Panic(err)
 	}
 

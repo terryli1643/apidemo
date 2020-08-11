@@ -17,14 +17,14 @@ var (
 )
 
 func init() {
-	configure.LoadWithJson("env/local/config/server.json")
+	configure.Path = "env/local/config/server.json"
 	model.InitialModels()
 	orm.InitCasbinEnforcer("env/local/config/casbin/rbac_model.conf")
 }
 
 func main() {
 	server := &http.Server{
-		Addr:         configure.ServerConfig.BccServer.Port,
+		Addr:         configure.New().BccServer.Port,
 		Handler:      router.MainRouter(),
 		ReadTimeout:  5 * time.Second,
 		WriteTimeout: 10 * time.Second,

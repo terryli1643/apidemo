@@ -1,8 +1,11 @@
 package service
 
 import (
+	"errors"
+
 	"github.com/terryli1643/apidemo/domain/dao"
 	"github.com/terryli1643/apidemo/domain/model"
+	log "github.com/terryli1643/apidemo/libs/logger"
 )
 
 // import (
@@ -92,23 +95,23 @@ func (service *AdminService) LoadUserByUsername(username string) model.Admin {
 // 	return nil
 // }
 
-// func (adminManager *UserService) GetAdminByLoginName(login string) (admin model.Admin, err error) {
-// 	if login == "" {
-// 		return model.Admin{}, errors.New("no login name")
-// 	}
-// 	db := getDB()
-// 	adminDao := dao.NewAdminDao(db)
-// 	result := model.Admin{
-// 		Account: login,
-// 	}
-// 	log.Infoln("GetAdminByLoginName", login)
-// 	err = adminDao.FindOne(&result)
-// 	if err != nil {
-// 		log.Error(err)
-// 		return model.Admin{}, err
-// 	}
-// 	return result, nil
-// }
+func (adminManager *AdminService) GetAdminByLoginName(login string) (admin model.Admin, err error) {
+	if login == "" {
+		return model.Admin{}, errors.New("no login name")
+	}
+	db := getDB()
+	adminDao := dao.NewAdminDao(db)
+	result := model.Admin{
+		Account: login,
+	}
+	log.Infoln("GetAdminByLoginName", login)
+	err = adminDao.FindOne(&result)
+	if err != nil {
+		log.Error(err)
+		return model.Admin{}, err
+	}
+	return result, nil
+}
 
 // func (service UserService) GetAdminByID(adminID int64) (admin model.Admin, err error) {
 // 	db := getDB()
