@@ -1,6 +1,7 @@
 package service
 
 import (
+	"errors"
 	"fmt"
 	"time"
 
@@ -29,6 +30,41 @@ func NewSessionService() *SessionService {
 		l.Unlock()
 	}
 	return sessionServiceObj
+}
+
+type IUserDetailService interface {
+	LoadUserByUsername(username string) (IUserDetails, error)
+}
+
+type IUserDetails interface {
+	GetID() int64
+	GetUsername() string
+	GetPassword() string
+	IsAccountLocked() bool
+}
+
+func (service *SessionService) Login(username string, password string, userService IUserDetailService) (token string, err error) {
+	userDetail, err := userService.LoadUserByUsername(username)
+	if err != nil {
+		err = errors.New("用户名密码错误")
+		log.Error(err)
+		return
+	}
+	passwordService := NewPasswordSerice()
+	ok := passwordService.Matches(password, userDetail.GetPassword())
+	if !ok {
+		err = errors.New("用户名密码错误")
+		log.Error(err)
+		return
+	}
+
+	sessionService := NewSessionService()
+	token, err = sessionService.CreateSession(userDetail.GetID(), userDetail.GetUsername())
+	if err != nil {
+		log.Error(err)
+		return
+	}
+	return
 }
 
 //CreateJWT 创建登陆令牌

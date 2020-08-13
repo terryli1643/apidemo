@@ -30,18 +30,11 @@ func LoginHandler(c *gin.Context) {
 		return
 	}
 
-	adminService := service.NewAdminService()
-	admin, err := adminService.GetAdminByLoginName(data.Username)
-	if err != nil {
-		err = errors.New("用户名密码错误")
-		newClientError(c, err)
-		return
-	}
-
 	sessionService := service.NewSessionService()
-	token, err := sessionService.CreateSession(admin.ID, admin.Account)
+	adminServcie := service.NewAdminService()
+	token, err := sessionService.Login(data.Username, data.Password, adminServcie)
 	if err != nil {
-		newClientError(c, err)
+		newServerError(c, err)
 		return
 	}
 	c.JSON(http.StatusOK, CommonResp{

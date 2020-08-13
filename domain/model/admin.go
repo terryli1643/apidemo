@@ -47,18 +47,16 @@ type SearchAdminCondition struct {
 	State      AccountState
 }
 
-func (admin *Admin) GetUsername() string {
+func (admin Admin) GetID() int64 {
+	return admin.ID
+}
+
+func (admin Admin) GetUsername() string {
 	return admin.Account
 }
-func (admin *Admin) GetPassword() string {
+func (admin Admin) GetPassword() string {
 	return admin.LoginPassword
 }
-func (admin *Admin) IsAccountExpired() bool {
-	return false
-}
-func (admin *Admin) IsAccountLocked() bool {
+func (admin Admin) IsAccountLocked() bool {
 	return admin.State == AccountDisable
-}
-func (admin *Admin) IsCredentialsExpired() bool {
-	return false
 }
