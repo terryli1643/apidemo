@@ -2,6 +2,7 @@ package service
 
 import (
 	"errors"
+	"strings"
 
 	"github.com/terryli1643/apidemo/domain/dao"
 	"github.com/terryli1643/apidemo/domain/model"
@@ -125,14 +126,14 @@ func (service AdminService) GetAdminByID(adminID int64) (admin model.Admin, err 
 	return admin, err
 }
 
-// func (service UserService) FindAdminListPaging(condition model.SearchAdminCondition, pageNum int, pageSize int) (result []model.Admin, count int, err error) {
-// 	rowbound := model.NewRowBound(pageNum, pageSize)
+func (service AdminService) FindAdminListPaging(condition model.SearchAdminCondition, pageNum int, pageSize int) (result []model.Admin, count int64, err error) {
+	rowbound := model.NewRowBound(pageNum, pageSize)
 
-// 	db := getDB()
-// 	adminDao := dao.NewAdminDao(db)
-// 	result, count, err = adminDao.FindAdmin(condition, rowbound)
-// 	return
-// }
+	db := getDB()
+	adminDao := dao.NewAdminDao(db)
+	result, count, err = adminDao.FindAdmin(condition, rowbound)
+	return
+}
 
 // func (service UserService) VerifySecurePwd(adminID int64, securePwd string) (err error) {
 // 	db := getDB()
@@ -175,40 +176,37 @@ func (service AdminService) GetAdminByID(adminID int64) (admin model.Admin, err 
 // 	return nil
 // }
 
-// //创建管理员
-// func (service UserService) CreateAdmin(ctx model.GlobalHandler, admin model.Admin) (err error) {
-// 	db := getDB()
-// 	adminDao := dao.NewAdminDao(db)
+//创建管理员
+func (service AdminService) CreateAdmin(admin model.Admin) (err error) {
+	db := getDB()
+	adminDao := dao.NewAdminDao(db)
 
-// 	// 验证用户账户已经存在
-// 	if ok := adminDao.Existed(&model.Admin{
-// 		// 帐号不区分大小写，所有帐号转成大写验证是否存在
-// 		Account: strings.ToUpper(admin.Account),
-// 	}); ok {
-// 		err = AccountExistError{
-// 			error: errors.New("account is exist"),
-// 		}
-// 		log.Error(err)
-// 		return err
-// 	}
+	// 验证用户账户已经存在
+	if ok := adminDao.Exsits(&model.Admin{
+		// 帐号不区分大小写，所有帐号转成大写验证是否存在
+		Account: strings.ToUpper(admin.Account),
+	}); ok {
+		err = errors.New("账号已经存在")
+		log.Error(err)
+		return err
+	}
 
-// 	//加密密码
-// 	passwordEncoder := shadowsecurity.PasswordEncoderInstance(shadowsecurity.PASSWORD_ENCODER)
-// 	admin.LoginPassword = passwordEncoder.Encode(admin.LoginPassword)
-// 	admin.SecurePassword = passwordEncoder.Encode(admin.SecurePassword)
+	//加密密码
+	passwordEncoder := NewPasswordSerice()
+	admin.LoginPassword = passwordEncoder.Encode(admin.LoginPassword)
+	admin.SecurePassword = passwordEncoder.Encode(admin.SecurePassword)
 
-// 	admin.UserType = model.UserTypeAdmin
-// 	admin.State = model.AccountEnable
+	admin.UserType = model.UserTypeAdmin
+	admin.State = model.AccountEnable
 
-// 	err = adminDao.Create(&admin)
-// 	if err != nil {
-// 		log.Error(err)
-// 		return
-// 	}
+	err = adminDao.Create(&admin)
+	if err != nil {
+		log.Error(err)
+		return
+	}
 
-// 	go NewSysLogService().CreateSysLog(ctx.SysLog, nil, admin)
-// 	return nil
-// }
+	return nil
+}
 
 // func (service UserService) UpdateAdminPassword(ctx model.GlobalHandler, UserID int64, password string) (err error) {
 // 	db := getDB()

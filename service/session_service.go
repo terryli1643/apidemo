@@ -69,6 +69,7 @@ func (service *SessionService) Login(username string, password string, userServi
 
 //CreateJWT 创建登陆令牌
 func (service SessionService) CreateJWT(claims map[string]interface{}) (tokenString string, err error) {
+	claims["timestamp"] = time.Now().Nanosecond()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims(claims))
 	tokenString, err = token.SignedString([]byte(HmacSampleSecret))
 	if err != nil {
