@@ -5,39 +5,39 @@ import (
 )
 
 type Admin struct {
-	ID        int64
-	CreatedAt *time.Time
-	UpdatedAt *time.Time
+	ID        int64      `json:"id,omitempty"`
+	CreatedAt *time.Time `json:"createdAt,omitempty"`
+	UpdatedAt *time.Time `json:"updatedAt,omitempty"`
 	//用户类型
-	UserType UserType
+	UserType UserType `json:"userType,omitempty"`
 	//帐号
-	Account string
+	Account string `json:"account,omitempty"`
 	//工号
-	JobNumber string
+	JobNumber string `json:"jobNumber,omitempty"`
 	//登录密码
-	LoginPassword string
+	LoginPassword string `json:"loginPassword,omitempty"`
 	//安全密码
-	SecurePassword string
+	SecurePassword string `json:"securePassword,omitempty"`
 	//部门
-	Department string
+	Department string `json:"department,omitempty"`
 	//创建人ID
-	Creator int64
+	Creator int64 `json:"creator,omitempty"`
 	//创建人账户
-	CreatorAccount string
+	CreatorAccount string `json:"creatorAccount,omitempty"`
 	//备注
-	Remark string
+	Remark string `json:"remark,omitempty"`
 	//帐号状态,  正常/锁定
-	State AccountState
+	State AccountState `json:"state,omitempty"`
 	//最后登录时间
-	LastLoginAt *time.Time
+	LastLoginAt *time.Time `json:"lastLoginAt,omitempty"`
 	//最后登录IP
-	LastLoginIP string
+	LastLoginIP string `json:"lastLoginIP,omitempty"`
 	//最后登录ip地址
-	LastLoginIPAddr string
+	LastLoginIPAddr string `json:"lastLoginIPAddr,omitempty"`
 	//角色
-	Roles []*Role `gorm:"many2many:role_user_rel;association_jointable_foreignkey:role_id;jointable_foreignkey:user_id;"`
+	Roles []*Role `gorm:"many2many:role_user_rel;association_jointable_foreignkey:role_id;jointable_foreignkey:user_id;" json:"roles,omitempty"`
 	//IM 账号
-	IMAccount string
+	IMAccount string `json:"imAccount,omitempty"`
 }
 
 type SearchAdminCondition struct {

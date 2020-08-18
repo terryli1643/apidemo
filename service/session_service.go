@@ -43,8 +43,8 @@ type IUserDetails interface {
 	IsAccountLocked() bool
 }
 
-func (service *SessionService) Login(username string, password string, userService IUserDetailService) (token string, err error) {
-	userDetail, err := userService.LoadUserByUsername(username)
+func (service *SessionService) Login(username string, password string, userService IUserDetailService) (token string, userDetail IUserDetails, err error) {
+	userDetail, err = userService.LoadUserByUsername(username)
 	if err != nil {
 		err = errors.New("用户名密码错误")
 		log.Error(err)

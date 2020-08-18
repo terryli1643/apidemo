@@ -17,8 +17,9 @@ type Login struct {
 	Password string `form:"password" json:"password" binding:"required"`
 }
 
-type Result struct {
-	Msg string `json:"msg"`
+type LoginSuccess struct {
+	Token      string      `json:"token"`
+	UserDetail interface{} `json:"userDetail"`
 }
 
 func LoginHandler(c *gin.Context) {
@@ -32,7 +33,7 @@ func LoginHandler(c *gin.Context) {
 
 	sessionService := service.NewSessionService()
 	adminServcie := service.NewAdminService()
-	token, err := sessionService.Login(data.Username, data.Password, adminServcie)
+	token, userDetail, err := sessionService.Login(data.Username, data.Password, adminServcie)
 	if err != nil {
 		newServerError(c, err)
 		return
@@ -40,6 +41,9 @@ func LoginHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, CommonResp{
 		Code:    http.StatusOK,
 		Message: "success",
-		Body:    token,
+		Body: LoginSuccess{
+			Token:      token,
+			UserDetail: userDetail,
+		},
 	})
 }
